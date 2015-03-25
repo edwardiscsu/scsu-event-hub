@@ -1,0 +1,13 @@
+CREATE TABLE Roles (
+   ID              SHORT              PRIMARY_KEY,
+   Role            VARCHAR(25)
+);
+
+CREATE TABLE Users (
+   ID              INTEGER            PRIMARY_KEY,
+   RoleID          SHORT,
+   FirstName       VARCHAR(25),
+   LastName        VARCHAR(25),
+
+   FOREIGN KEY (RoleID) REFERENCES Roles (ID)
+);
