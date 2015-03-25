@@ -43,10 +43,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AccountRepositories\" />
-    <Folder Include="App_Data\" />
     <Folder Include="EventRepositories\" />
     <Folder Include="Interfaces\" />
     <Folder Include="SubscriptionRepositories\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App_Data\EventHubDB.sqlite" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
