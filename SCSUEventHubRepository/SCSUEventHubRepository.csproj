@@ -39,13 +39,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventsRepositories\EventsRepository.cs" />
+    <Compile Include="EventsRepositories\EventsRepositoryFake.cs" />
+    <Compile Include="Interfaces\ICategoriesRepository.cs" />
+    <Compile Include="Interfaces\IEventsRepository.cs" />
+    <Compile Include="Interfaces\IReccomendationsRepository.cs" />
+    <Compile Include="Interfaces\IUsersRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReccomendationsRepositories\ReccomendationsRepository.cs" />
+    <Compile Include="ReccomendationsRepositories\ReccomendationsRepositoryFake.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AccountRepositories\" />
-    <Folder Include="EventRepositories\" />
-    <Folder Include="Interfaces\" />
-    <Folder Include="SubscriptionRepositories\" />
+    <Folder Include="CategoriesRepositories\" />
+    <Folder Include="UsersRepositories\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\EventHubDB.sqlite" />
