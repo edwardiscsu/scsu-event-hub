@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace SCSUEventHubModels.Models
 {
-    class Subscription
+    public class Admin : Account
     {
+        public int RoleID { get; set; }
     }
 }
