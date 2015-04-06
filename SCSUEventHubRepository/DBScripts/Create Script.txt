@@ -3,11 +3,72 @@ CREATE TABLE Roles (
    Role            VARCHAR(25)
 );
 
-CREATE TABLE Users (
+CREATE TABLE Admins (
    ID              INTEGER            PRIMARY_KEY,
    RoleID          SHORT,
+
    FirstName       VARCHAR(25),
    LastName        VARCHAR(25),
 
    FOREIGN KEY (RoleID) REFERENCES Roles (ID)
+);
+
+CREATE TABLE Users (
+   ID              INTEGER            PRIMARY_KEY,
+   FirstName       VARCHAR(25),
+   LastName        VARCHAR(25)
+);
+
+CREATE TABLE Categories (
+   ID              INTEGER            PRIMARY_KEY,
+   CategoryName    VARCHAR(255)
+);
+
+CREATE TABLE Events (
+   ID              INTEGER            PRIMARY_KEY,
+   CategoryID      INTEGER,
+
+   EventName       VARCHAR(255),
+   DateTime        DATETIME,
+   ImageURL        VARCHAR(255),
+   Description     TEXT,
+
+   FOREIGN KEY (CategoryID) REFERENCES Categories (ID)
+);
+
+CREATE TABLE Subscriptions (
+   ID              INTEGER            PRIMARY_KEY,
+   EventID         INTEGER,
+   UserID          INTEGER,
+
+   FOREIGN KEY (EventID) REFERENCES Events (ID),
+   FOREIGN KEY (UserID) REFERENCES Users (ID)
+);
+
+CREATE TABLE CategorySubscriptions (
+   ID              INTEGER            PRIMARY_KEY,
+   CategoryID      INTEGER,
+   UserID          INTEGER,
+
+   FOREIGN KEY (CategoryID) REFERENCES Categories (ID),
+   FOREIGN KEY (UserID) REFERENCES Users (ID)
+);
+
+CREATE TABLE Reminders (
+   ID              INTEGER            PRIMARY_KEY,
+   SubscriptionID  INTEGER,
+
+   DateTime        DATETIME,
+   IsActive        BOOLEAN,
+   
+   FOREIGN KEY (SubscriptionID) REFERENCES Subscriptions
+);
+
+CREATE TABLE Reccomendations (
+   ID              INTEGER            PRIMARY_KEY,
+   EventID         INTEGER,
+   UserID          INTEGER,
+
+   FOREIGN KEY (EventID) REFERENCES Events (ID),
+   FOREIGN KEY (UserID) REFERENCES Users (ID)
 );
