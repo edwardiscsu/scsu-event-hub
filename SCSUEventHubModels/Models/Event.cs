@@ -10,6 +10,7 @@ namespace SCSUEventHubModels.Models
     {
         public int ID { get; set; }
         public int CategoryID { get; set; }
+        public int AdminID { get; set; }
 
         public string EventName { get; set; }
 
