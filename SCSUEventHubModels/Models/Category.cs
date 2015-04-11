@@ -18,5 +18,7 @@ namespace SCSUEventHubModels.Models
 
         public virtual ICollection<Event> Events { get; set; }
         //public virtual ICollection<User> Users { get; set; }
+
+        public CategorySubscription CategorySubscription { get; set; }
     }
 }

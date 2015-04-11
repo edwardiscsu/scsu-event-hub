@@ -17,5 +17,7 @@ namespace SCSUEventHubModels.Models
         public DateTime EventDateTime { get; set; }
         public string ImageURL { get; set; }
         public string Description { get; set; }
+
+        public Subscription Subscription { get; set; }
     }
 }

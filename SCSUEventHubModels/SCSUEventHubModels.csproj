@@ -44,7 +44,10 @@
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\CategorySubscription.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\Reminder.cs" />
+    <Compile Include="Models\Subscription.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
