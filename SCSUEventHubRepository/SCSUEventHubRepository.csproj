@@ -78,6 +78,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\Admin.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Category.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\CategorySubscription.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Event.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\EventHubDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventHubDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\EventHubDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\EventHubDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventHubDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Reccomendation.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Reminder.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Role.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\Subscription.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entity\User.cs">
+      <DependentUpon>EventHubDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="EventsRepositories\EventsRepository.cs" />
     <Compile Include="EventsRepositories\EventsRepositoryFake.cs" />
     <Compile Include="Interfaces\ICategoriesRepository.cs" />
@@ -90,7 +132,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="CategoriesRepositories\" />
-    <Folder Include="Entity\" />
     <Folder Include="UsersRepositories\" />
   </ItemGroup>
   <ItemGroup>
@@ -98,6 +139,23 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="App_Data\EventHubDB.sqlite" />
+    <EntityDeploy Include="Entity\EventHubDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>EventHubDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Entity\EventHubDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EventHubDB.edmx</DependentUpon>
+      <LastGenOutput>EventHubDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Entity\EventHubDB.edmx.diagram">
+      <DependentUpon>EventHubDB.edmx</DependentUpon>
+    </None>
+    <None Include="Entity\EventHubDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>EventHubDB.edmx</DependentUpon>
+      <LastGenOutput>EventHubDB.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
