@@ -188,6 +188,19 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SCSUEventHubCommon\SCSUEventHubCommon.csproj">
+      <Project>{c6220c75-6471-4995-9b71-b74c9978b749}</Project>
+      <Name>SCSUEventHubCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCSUEventHubModels\SCSUEventHubModels.csproj">
+      <Project>{6723c2ae-3954-40e9-ab07-fdfd5a14ce92}</Project>
+      <Name>SCSUEventHubModels</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.96.0\build\net45\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.96.0\build\net45\System.Data.SQLite.Core.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
