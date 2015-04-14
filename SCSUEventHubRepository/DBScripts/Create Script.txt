@@ -21,12 +21,14 @@ CREATE TABLE Users (
 
 CREATE TABLE Categories (
    ID              INTEGER            PRIMARY_KEY,
-   CategoryName    VARCHAR(255)
+   CategoryName    VARCHAR(255),
+   AdminID         INTEGER
 );
 
 CREATE TABLE Events (
    ID              INTEGER            PRIMARY_KEY,
    CategoryID      INTEGER,
+   AdminID         INTEGER,
 
    EventName       VARCHAR(255),
    DateTime        DATETIME,
