@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CategoriesRepositories\CategoriesRepository.cs" />
     <Compile Include="Entity\Admin.cs">
       <DependentUpon>EventHubDB.tt</DependentUpon>
     </Compile>
@@ -131,7 +132,6 @@
     <Compile Include="ReccomendationsRepositories\ReccomendationsRepositoryFake.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="CategoriesRepositories\" />
     <Folder Include="UsersRepositories\" />
   </ItemGroup>
   <ItemGroup>
