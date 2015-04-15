@@ -123,6 +123,7 @@
     </Compile>
     <Compile Include="EventsRepositories\EventsRepository.cs" />
     <Compile Include="EventsRepositories\EventsRepositoryFake.cs" />
+    <Compile Include="Interfaces\ContextDisposableRespository.cs" />
     <Compile Include="Interfaces\ICategoriesRepository.cs" />
     <Compile Include="Interfaces\IEventsRepository.cs" />
     <Compile Include="Interfaces\IReccomendationsRepository.cs" />
@@ -130,10 +131,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReccomendationsRepositories\ReccomendationsRepository.cs" />
     <Compile Include="ReccomendationsRepositories\ReccomendationsRepositoryFake.cs" />
+    <Compile Include="UsersRepositories\UsersRepository.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="UsersRepositories\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="app.config">
       <SubType>Designer</SubType>
