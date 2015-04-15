@@ -1,4 +1,4 @@
-﻿using SCSUEventHubModels.Models;
+﻿using SCSUEventHubRepository.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +10,9 @@ namespace SCSUEventHubRepository.Interfaces
     public interface ICategoriesRepository
     {
         IEnumerable<Category> Categories { get; }
-        bool AddCategory(Category modelObject);
         Category FindCategoryById(int categoryId);
         IEnumerable<Category> FindCategoriesByAdminId(int adminId);
+        bool AddCategory(Category modelObject);
         bool UpdateCategory(Category modelObject);
         bool DeleteCategory(int categoryId);
     }

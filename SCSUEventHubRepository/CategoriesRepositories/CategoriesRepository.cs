@@ -11,7 +11,7 @@ namespace SCSUEventHubRepository.CategoriesRepositories
 {
     public class CategoriesRepository : ContextDisposableRespository, ICategoriesRepository
     {
-        IEnumerable<Category> Categories
+        public IEnumerable<Category> Categories
         {
             get 
             {
@@ -41,7 +41,7 @@ namespace SCSUEventHubRepository.CategoriesRepositories
 
         public IEnumerable<Category> FindCategoriesByAdminId(int adminId)
         {
-            IEnumerable<Category> categories = from category in context.Categories
+            IEnumerable<Category> categories = from category in DBContext.Categories
                                                where category.AdminID == adminId
                                                select category;
             return categories;
