@@ -12,6 +12,8 @@ namespace SCSUEventHubRepository.Interfaces
         IEnumerable<Category> Categories { get; }
         Category FindCategoryById(int categoryId);
         IEnumerable<Category> FindCategoriesByAdminId(int adminId);
+        bool SubscribeCategory(int userId, int categoryId);
+        bool UnsubscribeCategory(int userId, int categoryId);
         bool AddCategory(Category modelObject);
         bool UpdateCategory(Category modelObject);
         bool DeleteCategory(int categoryId);

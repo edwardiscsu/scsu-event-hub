@@ -47,6 +47,39 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             return categories;
         }
 
+        public bool SubscribeCategory(int userId, int categoryId)
+        {
+            CategorySubscription link = new CategorySubscription { UserID = userId, CategoryID = categoryId };
+            DBContext.CategorySubscriptions.Add(link);
+            try
+            {
+                return (DBContext.SaveChanges() > 0);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                return false;
+            }
+        }
+
+        public bool UnsubscribeCategory(int userId, int categoryId)
+        {
+            CategorySubscription removed = (from link in DBContext.CategorySubscriptions
+                                           where link.UserID == userId &&
+                                                 link.CategoryID == categoryId
+                                           select link).SingleOrDefault();
+            DBContext.CategorySubscriptions.Remove(removed);
+            try
+            {
+                return (DBContext.SaveChanges() > 0);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                return false;
+            }
+        }
+
         public bool UpdateCategory(Category modelObject)
         {
             if (modelObject.ID != 0)
@@ -58,8 +91,15 @@ namespace SCSUEventHubRepository.CategoriesRepositories
                 }
                 category.CategoryName = modelObject.CategoryName;
                 category.AdminID = modelObject.AdminID;
-
-                return (DBContext.SaveChanges() > 0);
+                try
+                {
+                    return (DBContext.SaveChanges() > 0);
+                }
+                catch (Exception exception)
+                {
+                    Console.WriteLine(exception.Message);
+                    return false;
+                }
             }
             else
             {
@@ -72,7 +112,15 @@ namespace SCSUEventHubRepository.CategoriesRepositories
         {
             Category category = DBContext.Categories.Find(categoryId);
             DBContext.Categories.Remove(category);
-            return (DBContext.SaveChanges() > 0);
+            try
+            {
+                return (DBContext.SaveChanges() > 0);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                return false;
+            }
         }
     }
 }
