@@ -1,4 +1,4 @@
-﻿using SCSUEventHubRepository.Entity;
+﻿using SCSUEventHubModels.Models;
 using SCSUEventHubRepository.Interfaces;
 using System;
 using System.Collections.Generic;

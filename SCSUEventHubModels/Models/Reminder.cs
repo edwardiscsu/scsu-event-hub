@@ -9,9 +9,10 @@ namespace SCSUEventHubModels.Models
     public class Reminder
     {
         public int ID { get; set; }
-        public int SubscriptionID { get; set; }
+        public Nullable<int> SubscriptionID { get; set; }
+        public Nullable<System.DateTime> DateTime { get; set; }
+        public Nullable<bool> IsActive { get; set; }
 
-        public DateTime DateTime { get; set; }
-        public bool IsActive { get; set; }
+        public virtual Subscription Subscription { get; set; }
     }
 }

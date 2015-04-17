@@ -8,10 +8,17 @@ namespace SCSUEventHubModels.Models
 {
     public class Subscription
     {
-        public int ID { get; set; }
-        public int EventID { get; set; }
-        public int UserID { get; set; }
+        public Subscription()
+        {
+            this.Reminders = new HashSet<Reminder>();
+        }
 
-        public ICollection<Reminder> Reminders { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> EventID { get; set; }
+        public Nullable<int> UserID { get; set; }
+
+        public virtual Event Event { get; set; }
+        public virtual ICollection<Reminder> Reminders { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -8,6 +8,6 @@ namespace SCSUEventHubModels.Models
 {
     public class Admin : Account
     {
-        public int RoleID { get; set; }
+        public Admin() { }
     }
 }

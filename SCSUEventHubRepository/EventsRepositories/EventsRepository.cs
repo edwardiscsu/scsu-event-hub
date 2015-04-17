@@ -23,10 +23,13 @@ namespace SCSUEventHubRepository.EventsRepositories
 
                 if (null != newEvent)
                 {
-                    var eEvent = MapEventToEntity(newEvent);
-                    eventHubDB.Events.Add(eEvent);
+                    //var eEvent = MapEventToEntity(newEvent);
+                    //eventHubDB.Events.Add(eEvent);
+                    //eventHubDB.SaveChanges();
+                    //newEventID = eEvent.ID;
+                    eventHubDB.Events.Add(newEvent);
                     eventHubDB.SaveChanges();
-                    newEventID = eEvent.ID;
+                    newEventID = newEvent.ID;
                 }
                 else newEventID = new int?();
             }
@@ -98,7 +101,7 @@ namespace SCSUEventHubRepository.EventsRepositories
         {
             throw new NotImplementedException();
         }
-
+        /*
 
         #region Mapping
 
@@ -143,5 +146,6 @@ namespace SCSUEventHubRepository.EventsRepositories
         }
 
         #endregion
+         * */
     }
 }

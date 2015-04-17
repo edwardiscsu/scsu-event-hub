@@ -9,16 +9,18 @@ namespace SCSUEventHubModels.Models
 {
     public class Category
     {
-        public Category() { }
+        public Category()
+        {
+            this.CategorySubscriptions = new HashSet<CategorySubscription>();
+            this.Events = new HashSet<Event>();
+        }
 
-        [Key]
-        public int CategoryId { get; set; }
-        [Required] 
-        public string Name { get; set; }
+        public int ID { get; set; }
+        public Nullable<int> AdminID { get; set; }
+        public string CategoryName { get; set; }
 
+        public virtual Admin Admin { get; set; }
+        public virtual ICollection<CategorySubscription> CategorySubscriptions { get; set; }
         public virtual ICollection<Event> Events { get; set; }
-        //public virtual ICollection<User> Users { get; set; }
-
-        public CategorySubscription CategorySubscription { get; set; }
     }
 }
