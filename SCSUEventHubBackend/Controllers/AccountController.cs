@@ -91,7 +91,7 @@ namespace SCSUEventHubBackend.Controllers
                     return View(model);
             }
         }
-
+        /*
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]
@@ -185,7 +185,7 @@ namespace SCSUEventHubBackend.Controllers
             var result = await UserManager.ConfirmEmailAsync(userId, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
-
+        */
         //
         // GET: /Account/ForgotPassword
         [AllowAnonymous]
@@ -221,7 +221,7 @@ namespace SCSUEventHubBackend.Controllers
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        
         //
         // GET: /Account/ForgotPasswordConfirmation
         [AllowAnonymous]
@@ -229,7 +229,7 @@ namespace SCSUEventHubBackend.Controllers
         {
             return View();
         }
-
+        
         //
         // GET: /Account/ResetPassword
         [AllowAnonymous]
@@ -271,7 +271,7 @@ namespace SCSUEventHubBackend.Controllers
         {
             return View();
         }
-
+        /*
         //
         // POST: /Account/ExternalLogin
         [HttpPost]
@@ -385,7 +385,7 @@ namespace SCSUEventHubBackend.Controllers
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
         }
-
+        */
         //
         // POST: /Account/LogOff
         [HttpPost]
@@ -395,7 +395,7 @@ namespace SCSUEventHubBackend.Controllers
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
+        /*
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]
@@ -403,7 +403,7 @@ namespace SCSUEventHubBackend.Controllers
         {
             return View();
         }
-
+        */
         protected override void Dispose(bool disposing)
         {
             if (disposing)
