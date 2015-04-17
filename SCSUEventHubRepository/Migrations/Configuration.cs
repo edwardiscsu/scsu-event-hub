@@ -26,8 +26,8 @@ namespace SCSUEventHubRepository.Migrations
                 IdentityResult roleResult = roleManager.Create(new IdentityRole(roleT1));
                 if (roleResult.Succeeded)
                 {
-                    Admin adminUser = new Admin() { UserName = "Harlan" };
-                    IdentityResult userResult = userManager.Create(adminUser, "SCSU@2015");
+                    Admin adminUser = new Admin() { UserName = "harlansang@gmail.com", Email = "harlansang@gmail.com" };
+                    IdentityResult userResult = userManager.Create(adminUser, "scsu2015");
                     if (userResult.Succeeded)
                     {
                         IdentityResult result = userManager.AddToRole(adminUser.Id, roleT1);
@@ -36,8 +36,8 @@ namespace SCSUEventHubRepository.Migrations
 
                 if (roleResult.Succeeded)
                 {
-                    Admin adminUser = new Admin() { UserName = "Edward" };
-                    IdentityResult userResult = userManager.Create(adminUser, "SCSU@2015");
+                    Admin adminUser = new Admin() { UserName = "ised0301@stcloudstate.edu", Email = "ised0301@stcloudstate.edu" };
+                    IdentityResult userResult = userManager.Create(adminUser, "scsu2015");
                     if (userResult.Succeeded)
                     {
                         IdentityResult result = userManager.AddToRole(adminUser.Id, roleT1);
@@ -46,8 +46,8 @@ namespace SCSUEventHubRepository.Migrations
 
                 if (roleResult.Succeeded)
                 {
-                    Admin adminUser = new Admin() { UserName = "Pramuka" };
-                    IdentityResult userResult = userManager.Create(adminUser, "SCSU@2015");
+                    Admin adminUser = new Admin() { UserName = "ehpr1301@stcloudstate.edu", Email = "ehpr1301@stcloudstate.edu" };
+                    IdentityResult userResult = userManager.Create(adminUser, "scsu2015");
                     if (userResult.Succeeded)
                     {
                         IdentityResult result = userManager.AddToRole(adminUser.Id, roleT1);
