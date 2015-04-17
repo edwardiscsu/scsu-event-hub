@@ -1,5 +1,7 @@
 namespace SCSUEventHubRepository.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using SCSUEventHubModels.Models;
     using System;
     using System.Data.Entity;
@@ -15,6 +17,56 @@ namespace SCSUEventHubRepository.Migrations
 
         protected override void Seed(SCSUEventHubRepository.Entity.EventHubDBEntities context)
         {
+            UserManager<Account> userManager = new UserManager<Account>(new UserStore<Account>(context));
+            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            string roleT1 = "T1 Administrator";
+            if (!roleManager.RoleExists(roleT1))
+            {
+                IdentityResult roleResult = roleManager.Create(new IdentityRole(roleT1));
+                if (roleResult.Succeeded)
+                {
+                    Admin adminUser = new Admin() { UserName = "Harlan" };
+                    IdentityResult userResult = userManager.Create(adminUser, "SCSU@2015");
+                    if (userResult.Succeeded)
+                    {
+                        IdentityResult result = userManager.AddToRole(adminUser.Id, roleT1);
+                    }
+                }
+
+                if (roleResult.Succeeded)
+                {
+                    Admin adminUser = new Admin() { UserName = "Edward" };
+                    IdentityResult userResult = userManager.Create(adminUser, "SCSU@2015");
+                    if (userResult.Succeeded)
+                    {
+                        IdentityResult result = userManager.AddToRole(adminUser.Id, roleT1);
+                    }
+                }
+
+                if (roleResult.Succeeded)
+                {
+                    Admin adminUser = new Admin() { UserName = "Pramuka" };
+                    IdentityResult userResult = userManager.Create(adminUser, "SCSU@2015");
+                    if (userResult.Succeeded)
+                    {
+                        IdentityResult result = userManager.AddToRole(adminUser.Id, roleT1);
+                    }
+                }
+            }
+
+            string roleT2 = "T2 Administrator";
+            if (!roleManager.RoleExists(roleT2))
+            {
+                IdentityResult roleResult = roleManager.Create(new IdentityRole(roleT2));
+            }
+
+            string roleT3 = "T3 Administrator";
+            if (!roleManager.RoleExists(roleT3))
+            {
+                IdentityResult roleResult = roleManager.Create(new IdentityRole(roleT3));
+            }
+
             Category[] categories = new Category[] {
                 new Category { CategoryName = "Athletics" },
                 new Category { CategoryName = "Conferences & Workshops" },
@@ -38,24 +90,6 @@ namespace SCSUEventHubRepository.Migrations
             context.Events.AddOrUpdate(
                 record => record.EventName,
                 events
-            );
-
-            User[] users = new User[] {
-
-            };
-
-            context.Users.AddOrUpdate(
-                record => record.Email,
-                users
-            );
-
-            Admin[] admins = new Admin[] {
-
-            };
-
-            context.Admins.AddOrUpdate(
-                record => record.Email,
-                admins
             );
 
             Recommendation[] recommendations = new Recommendation[] {
