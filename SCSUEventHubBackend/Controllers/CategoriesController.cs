@@ -7,19 +7,19 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SCSUEventHubModels.Models;
-using SCSUEventHubRepository.Entity;
+using SCSUEventHubRepository.CategoriesRepositories;
 
 namespace SCSUEventHubBackend.Controllers
 {
     [Authorize(Roles = "T1 Administrator")]
     public class CategoriesController : Controller
     {
-        private EventHubDBEntities db = new EventHubDBEntities();
+        private CategoriesRepository repository = new CategoriesRepository();
 
         // GET: Categories
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return View(repository.Categories.ToList());
         }
 
         // GET: Categories/Details/5
@@ -29,12 +29,15 @@ namespace SCSUEventHubBackend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            else
             {
-                return HttpNotFound();
+                Category category = repository.FindCategoryById(id.Value);
+                if (category == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(category);
             }
-            return View(category);
         }
 
         // GET: Categories/Create
@@ -52,8 +55,7 @@ namespace SCSUEventHubBackend.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
+                repository.AddCategory(category);
                 return RedirectToAction("Index");
             }
 
@@ -67,12 +69,15 @@ namespace SCSUEventHubBackend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            else
             {
-                return HttpNotFound();
+                Category category = repository.FindCategoryById(id.Value);
+                if (category == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(category);
             }
-            return View(category);
         }
 
         // POST: Categories/Edit/5
@@ -84,8 +89,7 @@ namespace SCSUEventHubBackend.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
+                repository.UpdateCategory(category);
                 return RedirectToAction("Index");
             }
             return View(category);
@@ -98,12 +102,15 @@ namespace SCSUEventHubBackend.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
-            if (category == null)
+            else
             {
-                return HttpNotFound();
+                Category category = repository.FindCategoryById(id.Value);
+                if (category == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(category);
             }
-            return View(category);
         }
 
         // POST: Categories/Delete/5
@@ -111,9 +118,7 @@ namespace SCSUEventHubBackend.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            repository.DeleteCategory(id);
             return RedirectToAction("Index");
         }
 
@@ -121,7 +126,7 @@ namespace SCSUEventHubBackend.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                repository.Dispose();
             }
             base.Dispose(disposing);
         }
