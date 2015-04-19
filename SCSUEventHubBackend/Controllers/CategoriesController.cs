@@ -8,13 +8,14 @@ using System.Web;
 using System.Web.Mvc;
 using SCSUEventHubModels.Models;
 using SCSUEventHubRepository.CategoriesRepositories;
+using SCSUEventHubRepository.Interfaces;
 
 namespace SCSUEventHubBackend.Controllers
 {
     [Authorize(Roles = "T1 Administrator")]
     public class CategoriesController : Controller
     {
-        private CategoriesRepository repository = new CategoriesRepository();
+        private ICategoriesRepository repository = new CategoriesRepository();
 
         // GET: Categories
         public ActionResult Index()
@@ -120,15 +121,6 @@ namespace SCSUEventHubBackend.Controllers
         {
             repository.DeleteCategory(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                repository.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
