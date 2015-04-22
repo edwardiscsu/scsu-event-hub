@@ -13,8 +13,8 @@ namespace SCSUEventHubRepository.Interfaces
         IEnumerable<User> Users { get; }
         Admin FindAdminById(string adminId);
         User FindUserById(string userId);
-        bool AddAdmin(Admin modelObject);
-        bool AddUser(User modelObject);
+        bool AddAdmin(Admin modelObject, string password);
+        bool AddUser(User modelObject, string password);
         bool UpdateAdmin(Admin modelObject);
         bool UpdateUser(User modelObject);
         bool DeleteAdmin(string adminId);

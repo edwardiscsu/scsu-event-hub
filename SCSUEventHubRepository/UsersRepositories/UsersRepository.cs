@@ -17,10 +17,11 @@ namespace SCSUEventHubRepository.CategoriesRepositories
         private UserManager<Account> userManager;
         private RoleManager<IdentityRole> roleManager;
 
-        public UsersRepository(EventHubDBEntities contextParam) : base(contextParam)
+        public UsersRepository()
+            : base()
         {
-            UserManager<Account> userManager = new UserManager<Account>(new UserStore<Account>(DBContext));
-            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(DBContext));
+            userManager = new UserManager<Account>(new UserStore<Account>(DBContext));
+            roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(DBContext));
         }
 
         public IEnumerable<Admin> Admins 
@@ -51,24 +52,28 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             return user;
         }
 
-        public bool AddAdmin(Admin modelObject)
+        public bool AddAdmin(Admin modelObject, string password)
         {
-            throw new NotImplementedException();
+            IdentityResult result = userManager.Create(modelObject, password);
+            return result.Succeeded;
         }
 
-        public bool AddUser(User modelObject)
+        public bool AddUser(User modelObject, string password)
         {
-            throw new NotImplementedException();
+            IdentityResult result = userManager.Create(modelObject, password);
+            return result.Succeeded;
         }
 
         public bool UpdateAdmin(Admin modelObject)
         {
-            throw new NotImplementedException();
+            IdentityResult result = userManager.Update(modelObject);
+            return result.Succeeded;
         }
 
         public bool UpdateUser(User modelObject)
         {
-            throw new NotImplementedException();
+            IdentityResult result = userManager.Update(modelObject);
+            return result.Succeeded;
         }
 
         public bool DeleteAdmin(string adminId)
@@ -90,7 +95,7 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             return result.Succeeded;
         }
 
-        protected virtual void Dispose(bool disposing)
+        protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
