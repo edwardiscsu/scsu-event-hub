@@ -121,9 +121,9 @@
     <Compile Include="Interfaces\IEventsRepository.cs" />
     <Compile Include="Interfaces\IRecommendationsRepository.cs" />
     <Compile Include="Interfaces\IUsersRepository.cs" />
-    <Compile Include="Migrations\201504170245018_InitialMigrationToCF.cs" />
-    <Compile Include="Migrations\201504170245018_InitialMigrationToCF.Designer.cs">
-      <DependentUpon>201504170245018_InitialMigrationToCF.cs</DependentUpon>
+    <Compile Include="Migrations\201504222029078_Initial.cs" />
+    <Compile Include="Migrations\201504222029078_Initial.Designer.cs">
+      <DependentUpon>201504222029078_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -173,8 +173,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504170245018_InitialMigrationToCF.resx">
-      <DependentUpon>201504170245018_InitialMigrationToCF.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201504222029078_Initial.resx">
+      <DependentUpon>201504222029078_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

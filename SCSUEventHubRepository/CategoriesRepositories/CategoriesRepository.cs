@@ -39,7 +39,7 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             return category;
         }
 
-        public IEnumerable<Category> FindCategoriesByAdminId(int adminId)
+        public IEnumerable<Category> FindCategoriesByAdminId(string adminId)
         {
             IEnumerable<Category> categories = from category in DBContext.Categories
                                                where category.AdminID == adminId

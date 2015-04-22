@@ -3,7 +3,7 @@ namespace SCSUEventHubRepository.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigrationToCF : DbMigration
+    public partial class Initial : DbMigration
     {
         public override void Up()
         {
@@ -73,13 +73,12 @@ namespace SCSUEventHubRepository.Migrations
                 c => new
                     {
                         ID = c.Int(nullable: false, identity: true),
-                        AdminID = c.Int(),
+                        AdminID = c.String(maxLength: 4000),
                         CategoryName = c.String(maxLength: 4000),
-                        Admin_Id = c.String(maxLength: 4000),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.AspNetUsers", t => t.Admin_Id)
-                .Index(t => t.Admin_Id);
+                .ForeignKey("dbo.AspNetUsers", t => t.AdminID)
+                .Index(t => t.AdminID);
             
             CreateTable(
                 "dbo.CategorySubscriptions",
@@ -185,7 +184,7 @@ namespace SCSUEventHubRepository.Migrations
             DropForeignKey("dbo.Events", "Admin_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.CategorySubscriptions", "User_Id", "dbo.AspNetUsers");
             DropForeignKey("dbo.CategorySubscriptions", "CategoryID", "dbo.Categories");
-            DropForeignKey("dbo.Categories", "Admin_Id", "dbo.AspNetUsers");
+            DropForeignKey("dbo.Categories", "AdminID", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Reminders", new[] { "SubscriptionID" });
             DropIndex("dbo.Subscriptions", new[] { "User_Id" });
@@ -196,7 +195,7 @@ namespace SCSUEventHubRepository.Migrations
             DropIndex("dbo.Recommendations", new[] { "EventID" });
             DropIndex("dbo.CategorySubscriptions", new[] { "User_Id" });
             DropIndex("dbo.CategorySubscriptions", new[] { "CategoryID" });
-            DropIndex("dbo.Categories", new[] { "Admin_Id" });
+            DropIndex("dbo.Categories", new[] { "AdminID" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });

@@ -7,13 +7,13 @@ namespace SCSUEventHubRepository.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialMigrationToCF : IMigrationMetadata
+    public sealed partial class Initial : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigrationToCF));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initial));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504170245018_InitialMigrationToCF"; }
+            get { return "201504222029078_Initial"; }
         }
         
         string IMigrationMetadata.Source

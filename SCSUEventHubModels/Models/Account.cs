@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
@@ -13,6 +14,9 @@ namespace SCSUEventHubModels.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+
+        //[NotMapped]
+        //public string PasswordText { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<Account> manager)
         {

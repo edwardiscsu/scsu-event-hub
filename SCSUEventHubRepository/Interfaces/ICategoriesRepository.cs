@@ -11,7 +11,7 @@ namespace SCSUEventHubRepository.Interfaces
     {
         IEnumerable<Category> Categories { get; }
         Category FindCategoryById(int categoryId);
-        IEnumerable<Category> FindCategoriesByAdminId(int adminId);
+        IEnumerable<Category> FindCategoriesByAdminId(string adminId);
         bool SubscribeCategory(int userId, int categoryId);
         bool UnsubscribeCategory(int userId, int categoryId);
         bool AddCategory(Category modelObject);

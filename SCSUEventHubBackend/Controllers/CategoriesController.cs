@@ -44,6 +44,7 @@ namespace SCSUEventHubBackend.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
+            ViewBag.UserId = new SelectList((new UsersRepository()).Admins, "Id", "Email");
             return View();
         }
 
@@ -59,7 +60,7 @@ namespace SCSUEventHubBackend.Controllers
                 repository.AddCategory(category);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.UserId = new SelectList((new UsersRepository()).Admins, "Id", "Email", category.AdminID);
             return View(category);
         }
 
@@ -77,6 +78,7 @@ namespace SCSUEventHubBackend.Controllers
                 {
                     return HttpNotFound();
                 }
+                ViewBag.UserId = new SelectList((new UsersRepository()).Admins, "Id", "Email");
                 return View(category);
             }
         }
@@ -93,6 +95,7 @@ namespace SCSUEventHubBackend.Controllers
                 repository.UpdateCategory(category);
                 return RedirectToAction("Index");
             }
+            ViewBag.UserId = new SelectList((new UsersRepository()).Admins, "Id", "Email", category.AdminID);
             return View(category);
         }
 

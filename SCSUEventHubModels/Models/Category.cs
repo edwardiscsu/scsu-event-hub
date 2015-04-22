@@ -16,7 +16,9 @@ namespace SCSUEventHubModels.Models
         }
 
         public int ID { get; set; }
-        public Nullable<int> AdminID { get; set; }
+        [Display(Name = "Administrator")]
+        public string AdminID { get; set; }
+        [Display(Name = "Name")]
         public string CategoryName { get; set; }
 
         public virtual Admin Admin { get; set; }

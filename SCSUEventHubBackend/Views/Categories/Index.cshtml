@@ -12,7 +12,8 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.AdminID)
+            Administrator
+            <!--@Html.DisplayNameFor(model => model.Admin.Email)-->
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CategoryName)
@@ -23,7 +24,7 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.AdminID)
+            @Html.DisplayFor(modelItem => item.Admin.Email)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CategoryName)
