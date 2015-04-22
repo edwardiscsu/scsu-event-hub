@@ -11,14 +11,14 @@ namespace SCSUEventHubRepository.Interfaces
     {
         IEnumerable<Admin> Admins { get; }
         IEnumerable<User> Users { get; }
-        Admin FindAdminById(int adminId);
-        User FindUserById(int userId);
+        Admin FindAdminById(string adminId);
+        User FindUserById(string userId);
         bool AddAdmin(Admin modelObject);
         bool AddUser(User modelObject);
         bool UpdateAdmin(Admin modelObject);
         bool UpdateUser(User modelObject);
-        bool DeleteAdmin(int adminId);
-        bool AdminAddRole(int roleId);
-        bool AdminRemoveRole(int roleId);
+        bool DeleteAdmin(string adminId);
+        bool AdminAddRole(string adminId, string roleId);
+        bool AdminRemoveRole(string adminId, string roleId);
     }
 }

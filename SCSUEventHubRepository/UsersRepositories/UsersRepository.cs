@@ -1,4 +1,7 @@
-﻿using SCSUEventHubModels.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using SCSUEventHubModels.Models;
+using SCSUEventHubRepository.Entity;
 using SCSUEventHubRepository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -11,11 +14,20 @@ namespace SCSUEventHubRepository.CategoriesRepositories
 {
     public class UsersRepository : ContextDisposableRespository, IUsersRepository
     {
+        private UserManager<Account> userManager;
+        private RoleManager<IdentityRole> roleManager;
+
+        public UsersRepository(EventHubDBEntities contextParam) : base(contextParam)
+        {
+            UserManager<Account> userManager = new UserManager<Account>(new UserStore<Account>(DBContext));
+            RoleManager<IdentityRole> roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(DBContext));
+        }
+
         public IEnumerable<Admin> Admins 
         {
             get 
             {
-                throw new NotImplementedException();
+                return DBContext.Admins; 
             } 
         }
 
@@ -23,18 +35,20 @@ namespace SCSUEventHubRepository.CategoriesRepositories
         {
             get
             {
-                throw new NotImplementedException();
+                return DBContext.ClientUsers; 
             }
         }
 
-        public Admin FindAdminById(int adminId)
+        public Admin FindAdminById(string adminId)
         {
-            throw new NotImplementedException();
+            Admin user = DBContext.Admins.Find(adminId);
+            return user;
         }
 
-        public User FindUserById(int userId)
+        public User FindUserById(string userId)
         {
-            throw new NotImplementedException();
+            User user = DBContext.ClientUsers.Find(userId);
+            return user;
         }
 
         public bool AddAdmin(Admin modelObject)
@@ -57,19 +71,34 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             throw new NotImplementedException();
         }
 
-        public bool DeleteAdmin(int adminId)
+        public bool DeleteAdmin(string adminId)
         {
-            throw new NotImplementedException();
+            Admin user = DBContext.Admins.Find(adminId);
+            IdentityResult result = userManager.Delete(user);
+            return result.Succeeded;
         }
 
-        public bool AdminAddRole(int roleId)
+        public bool AdminAddRole(string adminId, string roleId)
         {
-            throw new NotImplementedException();
+            IdentityResult result = userManager.AddToRole(adminId, roleId);
+            return result.Succeeded;
         }
 
-        public bool AdminRemoveRole(int roleId)
+        public bool AdminRemoveRole(string adminId, string roleId)
         {
-            throw new NotImplementedException();
+            IdentityResult result = userManager.RemoveFromRole(adminId, roleId);
+            return result.Succeeded;
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                userManager.Dispose();
+                roleManager.Dispose();
+            }
+
+            base.Dispose();
         }
     }
 }

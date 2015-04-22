@@ -105,7 +105,6 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             {
                 return false;
             }
-
         }
 
         public bool DeleteCategory(int categoryId)

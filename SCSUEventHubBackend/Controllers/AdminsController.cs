@@ -20,19 +20,31 @@ namespace SCSUEventHubBackend.Controllers
         // GET: Admins
         public ActionResult Index()
         {
-            throw new NotImplementedException();
+            return View(repository.Admins.ToList());
         }
 
         // GET: Admins/Details/5
         public ActionResult Details(string id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                Admin admin = repository.FindAdminById(id);
+                if (admin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(admin);
+            }
         }
 
         // GET: Admins/Create
         public ActionResult Create()
         {
-            throw new NotImplementedException();
+            return View();
         }
 
         // POST: Admins/Create
@@ -42,13 +54,31 @@ namespace SCSUEventHubBackend.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] Admin admin)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                repository.AddAdmin(admin);
+                return RedirectToAction("Index");
+            }
+
+            return View(admin);
         }
 
         // GET: Admins/Edit/5
         public ActionResult Edit(string id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                Admin admin = repository.FindAdminById(id);
+                if (admin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(admin);
+            }
         }
 
         // POST: Admins/Edit/5
@@ -58,13 +88,30 @@ namespace SCSUEventHubBackend.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] Admin admin)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                repository.UpdateAdmin(admin);
+                return RedirectToAction("Index");
+            }
+            return View(admin);
         }
 
         // GET: Admins/Delete/5
         public ActionResult Delete(string id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                Admin admin = repository.FindAdminById(id);
+                if (admin == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(admin);
+            }
         }
 
         // POST: Admins/Delete/5
@@ -72,7 +119,8 @@ namespace SCSUEventHubBackend.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            throw new NotImplementedException();
+            repository.DeleteAdmin(id);
+            return RedirectToAction("Index");
         }
     }
 }
