@@ -52,26 +52,42 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             return user;
         }
 
-        public bool AddAdmin(Admin modelObject, string password)
+        public bool AddAdmin(Admin modelObject)
         {
-            IdentityResult result = userManager.Create(modelObject, password);
+            modelObject.UserName = modelObject.Email;
+            modelObject.EmailConfirmed = true;
+            if (modelObject.PhoneNumber != null)
+            {
+                modelObject.PhoneNumberConfirmed = true;
+            }
+            
+            IdentityResult result = userManager.Create(modelObject, modelObject.Password);
             return result.Succeeded;
         }
 
-        public bool AddUser(User modelObject, string password)
+        public bool AddUser(User modelObject)
         {
-            IdentityResult result = userManager.Create(modelObject, password);
+            modelObject.UserName = modelObject.Email;
+            IdentityResult result = userManager.Create(modelObject, modelObject.Password);
             return result.Succeeded;
         }
 
         public bool UpdateAdmin(Admin modelObject)
         {
+            if (modelObject.Password != null)
+            {
+                modelObject.PasswordHash = userManager.PasswordHasher.HashPassword(modelObject.Password);
+            }
             IdentityResult result = userManager.Update(modelObject);
             return result.Succeeded;
         }
 
         public bool UpdateUser(User modelObject)
         {
+            if (modelObject.Password != null)
+            {
+                modelObject.PasswordHash = userManager.PasswordHasher.HashPassword(modelObject.Password);
+            }
             IdentityResult result = userManager.Update(modelObject);
             return result.Succeeded;
         }

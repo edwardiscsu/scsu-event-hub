@@ -52,11 +52,11 @@ namespace SCSUEventHubBackend.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] Admin admin, string password)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,Email,Password,PhoneNumber")] Admin admin)
         {
             if (ModelState.IsValid)
             {
-                repository.AddAdmin(admin, password);
+                repository.AddAdmin(admin);
                 return RedirectToAction("Index");
             }
 
@@ -86,7 +86,7 @@ namespace SCSUEventHubBackend.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] Admin admin)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,EmailConfirmed,Password,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] Admin admin)
         {
             if (ModelState.IsValid)
             {
