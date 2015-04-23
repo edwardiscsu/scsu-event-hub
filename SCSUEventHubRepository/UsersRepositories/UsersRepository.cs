@@ -16,6 +16,8 @@ namespace SCSUEventHubRepository.CategoriesRepositories
     {
         private UserManager<Account> userManager;
         private RoleManager<IdentityRole> roleManager;
+        private bool adminsLoaded = false;
+        private bool usersLoaded = false;
 
         public UsersRepository()
             : base()
@@ -28,6 +30,14 @@ namespace SCSUEventHubRepository.CategoriesRepositories
         {
             get 
             {
+                if (!adminsLoaded)
+                {
+                    foreach (Admin user in DBContext.Admins)
+                    {
+                        user.RoleNames = this.FindRolesForAccount(user.Id);
+                    }
+                    adminsLoaded = true;
+                }
                 return DBContext.Admins; 
             } 
         }
@@ -36,6 +46,14 @@ namespace SCSUEventHubRepository.CategoriesRepositories
         {
             get
             {
+                if (!usersLoaded)
+                {
+                    foreach (User user in DBContext.ClientUsers)
+                    {
+                        user.RoleNames = this.FindRolesForAccount(user.Id);
+                    }
+                    usersLoaded = true;
+                }
                 return DBContext.ClientUsers; 
             }
         }
@@ -50,6 +68,11 @@ namespace SCSUEventHubRepository.CategoriesRepositories
         {
             User user = DBContext.ClientUsers.Find(userId);
             return user;
+        }
+
+        public IList<string> FindRolesForAccount(string userId)
+        {
+            return userManager.GetRoles<Account, string>(userId);
         }
 
         public bool AddAdmin(Admin modelObject)

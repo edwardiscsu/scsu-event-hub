@@ -10,6 +10,7 @@ using SCSUEventHubModels.Models;
 using SCSUEventHubRepository.CategoriesRepositories;
 using SCSUEventHubRepository.Interfaces;
 
+
 namespace SCSUEventHubBackend.Controllers
 {
     [Authorize(Roles = "T1 Administrator")]

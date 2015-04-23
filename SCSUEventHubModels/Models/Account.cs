@@ -19,6 +19,9 @@ namespace SCSUEventHubModels.Models
         public string LastName { get; set; }
 
         [NotMapped]
+        public IList<string> RoleNames { get; set; }
+
+        [NotMapped]
         [DataType(DataType.Password)]
         public string Password { get; set; }
 
