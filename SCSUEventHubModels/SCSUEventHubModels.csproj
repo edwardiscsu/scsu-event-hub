@@ -115,6 +115,7 @@
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\CategorySubscription.cs" />
     <Compile Include="Models\Event.cs" />
+    <Compile Include="Models\IModelCopyable.cs" />
     <Compile Include="Models\Recommendation.cs" />
     <Compile Include="Models\Reminder.cs" />
     <Compile Include="Models\Subscription.cs" />

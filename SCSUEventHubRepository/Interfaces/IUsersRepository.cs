@@ -1,4 +1,5 @@
-﻿using SCSUEventHubModels.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using SCSUEventHubModels.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,7 @@ namespace SCSUEventHubRepository.Interfaces
     {
         IEnumerable<Admin> Admins { get; }
         IEnumerable<User> Users { get; }
+        IEnumerable<IdentityRole> Roles { get; }
         Admin FindAdminById(string adminId);
         User FindUserById(string userId);
         IList<string> FindRolesForAccount(string userId);
@@ -19,7 +21,9 @@ namespace SCSUEventHubRepository.Interfaces
         bool UpdateAdmin(Admin modelObject);
         bool UpdateUser(User modelObject);
         bool DeleteAdmin(string adminId);
-        bool AdminAddRole(string adminId, string roleId);
-        bool AdminRemoveRole(string adminId, string roleId);
+        bool AdminAddRole(string adminId, string role);
+        bool AdminRemoveRole(string adminId, string role);
+        bool SyncAdminRoles(Admin modelObject);
+        Dictionary<string, object> RolesForUser(Account user);
     }
 }

@@ -45,6 +45,7 @@ namespace SCSUEventHubBackend.Controllers
         // GET: Admins/Create
         public ActionResult Create()
         {
+            ViewBag.Roles = repository.RolesForUser(null);
             return View();
         }
 
@@ -53,14 +54,14 @@ namespace SCSUEventHubBackend.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "FirstName,LastName,Email,Password,PhoneNumber")] Admin admin)
+        public ActionResult Create([Bind(Include = "FirstName,LastName,Email,Password,PhoneNumber,RoleNames")] Admin admin)
         {
             if (ModelState.IsValid)
             {
                 repository.AddAdmin(admin);
                 return RedirectToAction("Index");
             }
-
+            ViewBag.Roles = repository.RolesForUser(admin);
             return View(admin);
         }
 
@@ -78,6 +79,7 @@ namespace SCSUEventHubBackend.Controllers
                 {
                     return HttpNotFound();
                 }
+                ViewBag.Roles = repository.RolesForUser(admin);
                 return View(admin);
             }
         }
@@ -87,13 +89,14 @@ namespace SCSUEventHubBackend.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,EmailConfirmed,Password,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] Admin admin)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,EmailConfirmed,Password,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName,RoleNames")] Admin admin)
         {
             if (ModelState.IsValid)
             {
                 repository.UpdateAdmin(admin);
                 return RedirectToAction("Index");
             }
+            ViewBag.Roles = repository.RolesForUser(admin);
             return View(admin);
         }
 

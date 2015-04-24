@@ -46,10 +46,8 @@
         <td>
             @foreach (string role in item.RoleNames) 
             { 
-                <span>@role</span>
+                <span>@role |</span>
             }
-            <br/>
-            @Html.ActionLink("Manage", "Manage", new { id = item.Id })
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

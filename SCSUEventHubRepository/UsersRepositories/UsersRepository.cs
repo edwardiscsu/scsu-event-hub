@@ -58,6 +58,14 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             }
         }
 
+        public IEnumerable<IdentityRole> Roles
+        {
+            get
+            {
+                return roleManager.Roles;
+            }
+        }
+
         public Admin FindAdminById(string adminId)
         {
             Admin user = DBContext.Admins.Find(adminId);
@@ -85,7 +93,14 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             }
             
             IdentityResult result = userManager.Create(modelObject, modelObject.Password);
-            return result.Succeeded;
+            if (result.Succeeded)
+            {
+                return SyncAdminRoles(modelObject);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool AddUser(User modelObject)
@@ -101,8 +116,17 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             {
                 modelObject.PasswordHash = userManager.PasswordHasher.HashPassword(modelObject.Password);
             }
-            IdentityResult result = userManager.Update(modelObject);
-            return result.Succeeded;
+            Admin record = DBContext.Admins.Find(modelObject.Id);
+            record.CopyAttributes(modelObject);
+            IdentityResult result = userManager.Update(record);
+            if (result.Succeeded)
+            {
+                return SyncAdminRoles(record);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public bool UpdateUser(User modelObject)
@@ -111,7 +135,9 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             {
                 modelObject.PasswordHash = userManager.PasswordHasher.HashPassword(modelObject.Password);
             }
-            IdentityResult result = userManager.Update(modelObject);
+            User record = DBContext.ClientUsers.Find(modelObject.Id);
+            record.CopyAttributes(modelObject);
+            IdentityResult result = userManager.Update(record);
             return result.Succeeded;
         }
 
@@ -122,16 +148,56 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             return result.Succeeded;
         }
 
-        public bool AdminAddRole(string adminId, string roleId)
+        public bool AdminAddRole(string adminId, string role)
         {
-            IdentityResult result = userManager.AddToRole(adminId, roleId);
+            IdentityResult result = userManager.AddToRole(adminId, role);
             return result.Succeeded;
         }
 
-        public bool AdminRemoveRole(string adminId, string roleId)
+        public bool AdminRemoveRole(string adminId, string role)
         {
-            IdentityResult result = userManager.RemoveFromRole(adminId, roleId);
+            IdentityResult result = userManager.RemoveFromRole(adminId, role);
             return result.Succeeded;
+        }
+
+        public bool SyncAdminRoles(Admin modelObject)
+        {
+            foreach (IdentityRole role in Roles)
+            {
+                if (modelObject.RoleNames.Contains(role.Name) && modelObject.Roles.SingleOrDefault(r => r.RoleId == role.Id) == null)
+                {
+                    if (!AdminAddRole(modelObject.Id, role.Name))
+                    {
+                        return false;
+                    }
+                }
+                else if (!modelObject.RoleNames.Contains(role.Name) && modelObject.Roles.SingleOrDefault(r => r.RoleId == role.Id) != null)
+                {
+                    if (!AdminRemoveRole(modelObject.Id, role.Name))
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
+        public Dictionary<string, object> RolesForUser(Account user)
+        {
+            Dictionary<string, object> roleMap = new Dictionary<string, object>();
+            foreach (IdentityRole role in Roles)
+            {
+                if (user != null && user.Roles.SingleOrDefault(r => r.RoleId == role.Id) != null)
+                {
+                    roleMap.Add(role.Name, new { value = role.Name, @checked = "checked" });
+                }
+                else 
+                {
+                    roleMap.Add(role.Name, new { value = role.Name });
+                }
+            }
+            return roleMap;
         }
 
         protected override void Dispose(bool disposing)

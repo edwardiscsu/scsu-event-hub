@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SCSUEventHubModels.Models
 {
-    public class Account : IdentityUser
+    public class Account : IdentityUser, IModelCopyable<Account>
     {
         [Display(Name = "First Name")]
         public string FirstName { get; set; }
@@ -19,6 +19,7 @@ namespace SCSUEventHubModels.Models
         public string LastName { get; set; }
 
         [NotMapped]
+        [Display(Name = "Roles")]
         public IList<string> RoleNames { get; set; }
 
         [NotMapped]
@@ -31,6 +32,24 @@ namespace SCSUEventHubModels.Models
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
             return userIdentity;
+        }
+
+        public void CopyAttributes(Account other)
+        {
+            AccessFailedCount = other.AccessFailedCount;
+            Email = other.Email;
+            EmailConfirmed = other.EmailConfirmed;
+            LockoutEnabled = other.LockoutEnabled;
+            LockoutEndDateUtc = other.LockoutEndDateUtc;
+            PasswordHash = other.PasswordHash;
+            PhoneNumber = other.PhoneNumber;
+            PhoneNumberConfirmed = other.PhoneNumberConfirmed;
+            SecurityStamp = other.SecurityStamp;
+            TwoFactorEnabled = other.TwoFactorEnabled;
+            UserName = other.UserName;
+            FirstName = other.FirstName;
+            LastName = other.LastName;
+            RoleNames = other.RoleNames;
         }
     }
 }
