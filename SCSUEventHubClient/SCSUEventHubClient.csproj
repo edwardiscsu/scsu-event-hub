@@ -269,6 +269,16 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SCSUEventHubModels\SCSUEventHubModels.csproj">
+      <Project>{6723c2ae-3954-40e9-ab07-fdfd5a14ce92}</Project>
+      <Name>SCSUEventHubModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SCSUEventHubRepository\SCSUEventHubRepository.csproj">
+      <Project>{811c1f23-25fb-481a-842c-75bc32fb5343}</Project>
+      <Name>SCSUEventHubRepository</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
