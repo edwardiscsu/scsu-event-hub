@@ -45,7 +45,7 @@ namespace SCSUEventHubRepository.EventsRepositories
             throw new NotImplementedException();
         }
 
-        public Subscription GetSubscription(int eventID)
+        public Subscription GetSubscription(int userID, int eventID)
         {
             throw new NotImplementedException();
         }
@@ -60,7 +60,7 @@ namespace SCSUEventHubRepository.EventsRepositories
             throw new NotImplementedException();
         }
 
-        public List<Reminder> GetReminders(int eventID)
+        public List<Reminder> GetReminders(int subscriptionID)
         {
             throw new NotImplementedException();
         }

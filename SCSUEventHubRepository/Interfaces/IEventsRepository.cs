@@ -22,13 +22,13 @@ namespace SCSUEventHubRepository.Interfaces
         Subscription SubscribeToEvent(int userID, int eventID, ICollection<Reminder> reminders);
         bool UnsubscribeFromEvent(int userID, int eventID);
 
-        Subscription GetSubscription(int eventID);
+        Subscription GetSubscription(int userID, int eventID);
 
 
         int? AddReminder(int userID, int eventID, Reminder reminder);
 
         Reminder GetReminder(int reminderID);
-        List<Reminder> GetReminders(int eventID);
+        List<Reminder> GetReminders(int subscriptionID);
 
         int? UpdateReminder(int reminderID, Reminder reminder);
 

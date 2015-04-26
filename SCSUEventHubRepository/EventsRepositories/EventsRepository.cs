@@ -124,6 +124,10 @@ namespace SCSUEventHubRepository.EventsRepositories
 
             try
             {
+                var dEvent = DBContext.Events.Find(eventID);
+                if (null != dEvent)
+                    DBContext.Events.Remove(dEvent);
+                DBContext.SaveChanges();
 
                 success = true;
             }
@@ -142,9 +146,26 @@ namespace SCSUEventHubRepository.EventsRepositories
 
             try
             {
+                if (null != reminders
+                    && null != DBContext.Users.Find(userID)
+                    && null != DBContext.Events.Find(eventID))
+                {
+                    newSubscription.EventID = eventID;
+                    newSubscription.UserID = userID;
+
+                    DBContext.Subscriptions.Add(newSubscription);
+
+                    foreach (var reminder in reminders)
+                    {
+                        var newRemID = AddReminder(userID, eventID, reminder);
+                        if (null == newRemID) throw new Exception("error adding reminder");
+                    }
+                }
+                else newSubscription = null;
             }
             catch (Exception e)
             {
+                newSubscription = null;
                 throw new Exception(e.Message);
             }
 
@@ -157,24 +178,49 @@ namespace SCSUEventHubRepository.EventsRepositories
 
             try
             {
+                if (null != DBContext.Users.Find(userID)
+                    && null != DBContext.Events.Find(eventID))
+                {
+                    var subscription = DBContext.Subscriptions
+                        .Where(s => s.UserID == userID && s.EventID == eventID).FirstOrDefault();
+                    
+                    if (null != subscription)
+                    {
+                        var reminders = DBContext.Reminders
+                            .Where(r => r.SubscriptionID == subscription.ID);
+
+                        if (null != reminders)
+                        {
+                            DBContext.Reminders.RemoveRange(reminders);
+                            DBContext.SaveChanges();
+                        }
+
+                        DBContext.Subscriptions.Remove(subscription);
+                        DBContext.SaveChanges();
+                    }
+                }
             }
             catch (Exception e)
             {
+                success = false;
                 throw new Exception(e.Message);
             }
 
             return success;
         }
 
-        public Subscription GetSubscription(int eventID)
+        public Subscription GetSubscription(int userID, int eventID)
         {
             var subscription = new Subscription();
 
             try
             {
+                subscription = DBContext.Subscriptions
+                    .Where(s => s.UserID == userID && s.EventID == eventID).FirstOrDefault();
             }
             catch (Exception e)
             {
+                subscription = null;
                 throw new Exception(e.Message);
             }
 
@@ -187,9 +233,19 @@ namespace SCSUEventHubRepository.EventsRepositories
 
             try
             {
+                var subscription = GetSubscription(userID, eventID);
+                if (null != subscription)
+                {
+                    reminder.SubscriptionID = subscription.ID;
+                    DBContext.Reminders.Add(reminder);
+
+                    DBContext.SaveChanges();
+                }
+                else reminderID = null;
             }
             catch (Exception e)
             {
+                reminderID = null;
                 throw new Exception(e.Message);
             }
 
@@ -202,24 +258,29 @@ namespace SCSUEventHubRepository.EventsRepositories
 
             try
             {
+                reminder = DBContext.Reminders.Find(reminderID);
             }
             catch (Exception e)
             {
+                reminder = null;
                 throw new Exception(e.Message);
             }
 
             return reminder;
         }
 
-        public List<Reminder> GetReminders(int eventID)
+        public List<Reminder> GetReminders(int subscriptionID)
         {
             var reminders = new List<Reminder>();
 
             try
             {
+                reminders = DBContext.Reminders
+                    .Where(r => r.SubscriptionID == subscriptionID).ToList();
             }
             catch (Exception e)
             {
+                reminders = null;
                 throw new Exception(e.Message);
             }
 
@@ -232,9 +293,21 @@ namespace SCSUEventHubRepository.EventsRepositories
 
             try
             {
+                var dReminder = DBContext.Reminders.Find(reminderID);
+                if (null != dReminder)
+                {
+                    dReminder.IsActive = null != reminder.IsActive ? reminder.IsActive : dReminder.IsActive;
+                    dReminder.DateTime = null != reminder.DateTime ? reminder.DateTime : dReminder.DateTime;
+
+                    DBContext.SaveChanges();
+
+                    updatedReminderID = dReminder.ID;
+                }
+                else updatedReminderID = null;
             }
             catch (Exception e)
             {
+                updatedReminderID = null;
                 throw new Exception(e.Message);
             }
 
@@ -247,9 +320,18 @@ namespace SCSUEventHubRepository.EventsRepositories
 
             try
             {
+                var reminder = DBContext.Reminders.Find(reminderID);
+                if (null != reminder)
+                {
+                    DBContext.Reminders.Remove(reminder);
+                    DBContext.SaveChanges();
+                }
+
+                success = true;
             }
             catch (Exception e)
             {
+                success = false;
                 throw new Exception(e.Message);
             }
 
