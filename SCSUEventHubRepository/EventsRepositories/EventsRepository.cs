@@ -85,24 +85,37 @@ namespace SCSUEventHubRepository.EventsRepositories
             return dEvents;
         }
 
-        public int? UpdateEvent(Event updatedEvent)
+        public int? UpdateEvent(Event updEvent)
         {
-            var updatedEventID = new int?();
+            var updEventID = new int?();
 
             try
             {
-                if (null != updatedEvent)
+                if (null != updEvent
+                    && null != DBContext.Events.Find(updEvent.ID))
                 {
+                    var dEvent = DBContext.Events.Find(updEvent.ID);
 
+                    dEvent.EventName = null != updEvent.EventName ? updEvent.EventName : dEvent.EventName;
+                    dEvent.ImageURL = null != updEvent.ImageURL ? updEvent.ImageURL : dEvent.ImageURL;
+                    dEvent.DateTime = null != updEvent.DateTime ? updEvent.DateTime : dEvent.DateTime;
+                    dEvent.Description = null != updEvent.Description ? updEvent.Description : dEvent.Description;
+
+                    dEvent.CategoryID = null != updEvent.CategoryID ? updEvent.CategoryID : dEvent.CategoryID;
+
+                    DBContext.SaveChanges();
+
+                    updEventID = updEvent.ID;
                 }
-                else updatedEventID = null;
+                else updEventID = null;
             }
             catch (Exception e)
             {
+                updEventID = null;
                 throw new Exception(e.Message);
             }
 
-            return updatedEventID;
+            return updEventID;
         }
 
         public bool DeleteEvent(int eventID)
