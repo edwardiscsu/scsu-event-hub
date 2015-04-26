@@ -7,11 +7,14 @@ using System.Web.Mvc;
 
 namespace SCSUEventHubClient.Controllers
 {
-    public class HomeController : Controller
+    public class CategoriesController : Controller
     {
+        private ICategoriesRepository categoriesRepository;
+
         public ActionResult Index()
         {
             return View();
         }
+
     }
 }
