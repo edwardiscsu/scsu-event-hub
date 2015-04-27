@@ -16,7 +16,19 @@ $(document).ready(function () {
                     
                 },
                 success: function (data) {
-
+                    self.events([]);
+                    var newEvents = data;
+                    ko.utils.arrayForEach(newEvents, function (newEvent) {
+                        self.events.push({
+                            ID: newEvent.ID,
+                            CategoryID: newEvent.CategoryID,
+                            AdminID: newEvent.AdminID,
+                            EventName: newEvent.EventName,
+                            DateTime: newEvent.DateTime,
+                            ImageURL: newEvent.ImageURL,
+                            Description: newEvent.Description
+                        });
+                    });
                 },
                 error: function (jqXHR, status, error) {
 
