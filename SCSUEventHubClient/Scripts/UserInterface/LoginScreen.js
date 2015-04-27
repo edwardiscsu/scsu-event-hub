@@ -21,7 +21,6 @@ LoginScreen.prototype.open = function () {
 LoginScreen.prototype.close = function () {
     var originalThis = this;
     $("#" + this.contentPaneId).animate({
-
         opacity: 0.3
     }, this.animationTime, function () {
         $("#" + originalThis.contentPaneId).css("display", "none");
@@ -30,5 +29,10 @@ LoginScreen.prototype.close = function () {
 }
 
 LoginScreen.prototype.handleOpenClickEvent = function () {
-    
+    if (this.isOpen) {
+        this.close();
+    }
+    else {
+        this.open();
+    }
 }

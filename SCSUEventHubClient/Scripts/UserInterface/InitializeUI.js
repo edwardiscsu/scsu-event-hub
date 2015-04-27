@@ -9,9 +9,11 @@
     var contentPaneObjects = [];
     contentPaneObjects.push(loginScreen);
     contentPaneObjects.push(eventScreen);
+    loginScreen.contentPaneObjects = contentPaneObjects;
+    eventScreen.contentPaneObjects = contentPaneObjects;
 
     var appMenu = new AppMenuShelf("master-detail-menu", "cmd-app-menu-open");
-    var filterMenu = new CategoriesFilterMenu("category-filter-menu", "cmd-categories-menu");
+    var filterMenu = new CategoriesFilterMenu("category-filter-menu", "cmd-categories-all", "cmd-categories-menu");
 
     var categoryService = new CategoryService("/api/categories");
     categoryService.addCategoriesLoadedListener(function () {

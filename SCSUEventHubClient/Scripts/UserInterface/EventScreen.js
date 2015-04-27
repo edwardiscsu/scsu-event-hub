@@ -30,5 +30,14 @@ EventScreen.prototype.close = function () {
 }
 
 EventScreen.prototype.handleOpenClickEvent = function () {
+    if (this.isOpen) {
+        this.close();
+    }
+    else {
+        this.open();
+    }
+}
+
+EventScreen.prototype.reset = function () {
 
 }

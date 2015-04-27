@@ -1,11 +1,13 @@
-﻿function CategoriesFilterMenu(categoryMenuId, openButtonId) {
+﻿function CategoriesFilterMenu(categoryMenuId, categoryAllId, openButtonId) {
     this.categoryMenuId = categoryMenuId;
     this.openButtonId = openButtonId;
+    this.categoryAllId = categoryAllId;
     this.animationTime = 600;
     this.isOpen = false;
     this.onCategoryClicked = [];
     this.categorySelected = -1;
 
+    $('#' + this.categoryAllId).on("click", $.proxy(this.handleCategoryClicked, this))
     $('#' + this.openButtonId).on("click", $.proxy(this.handleMenuClickEvent, this));
 };
 
