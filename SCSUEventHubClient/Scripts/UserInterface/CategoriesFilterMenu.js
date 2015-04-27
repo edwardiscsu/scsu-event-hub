@@ -16,7 +16,6 @@ CategoriesFilterMenu.prototype.open = function () {
     $("#" + this.categoryMenuId).children().each(function () {
         $(this).css("display", "block");
         $(this).animate({
-
             opacity: 1.0
         }, this.animationTime, function () {
             originalThis.isOpen = true;
@@ -57,7 +56,6 @@ CategoriesFilterMenu.prototype.addCategoriesToList = function (categories) {
 }
 
 CategoriesFilterMenu.prototype.addCategoryToList = function (category) {
-    console.log(category);
     $("#" + this.categoryMenuId).append(
         $("<li></li>")
             .addClass("list-group-item")

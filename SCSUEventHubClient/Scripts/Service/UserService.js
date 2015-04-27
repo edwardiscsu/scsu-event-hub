@@ -2,22 +2,22 @@
     this.baseUrl = baseUrl;
 };
 
-UsersService.prototype.login = function (username, password) {
+UserService.prototype.login = function (username, password) {
 
 };
 
-UsersService.prototype.logout = function () {
+UserService.prototype.logout = function () {
 
 };
 
-UsersService.prototype.handleCreateUserEvent = function (event) {
+UserService.prototype.handleCreateUserEvent = function (event) {
 
 };
 
-UsersService.prototype.handleLoginEvent = function (event) {
+UserService.prototype.handleLoginEvent = function (event) {
 
 };
 
-UsersService.prototype.handleLogoutEvent = function (event) {
+UserService.prototype.handleLogoutEvent = function (event) {
 
 };

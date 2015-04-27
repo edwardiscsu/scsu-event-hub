@@ -1,11 +1,11 @@
-﻿function EventScreen(contentPaneId, openButtonId) {
+﻿function EventScreen(contentPaneId, eventService) {
     this.contentPaneId = contentPaneId;
-    this.openButtonId = openButtonId;
+    this.eventService = eventService;
     this.animationTime = 600;
     this.contentPanelObjects = [];
     this.isOpen = false;
 
-    $('#' + this.openButtonId).on("click", $.proxy(this.handleOpenClickEvent, this));
+
 }
 
 EventScreen.prototype.open = function () {
@@ -27,7 +27,6 @@ EventScreen.prototype.open = function () {
 EventScreen.prototype.close = function () {
     var originalThis = this;
     $("#" + this.contentPaneId).animate({
-
         opacity: 0.3
     }, this.animationTime, function () {
         $("#" + originalThis.contentPaneId).css("display", "none");
@@ -44,13 +43,22 @@ EventScreen.prototype.handleOpenClickEvent = function () {
     }
 }
 
-EventScreen.prototype.reset = function () {
+EventScreen.prototype.reset = function (filterId) {
 
 }
 
 EventScreen.prototype.closeContentPanels = function () {
     var length = this.contentPanelObjects.length;
     for (var i = 0; i < length; i++) {
-        this.contentPanelObjects[i].close();
+        if (this.contentPanelObjects[i] != this) {
+            this.contentPanelObjects[i].close();
+        }
     }
+}
+
+EventScreen.prototype.handleCategoryClicked = function (filter) {
+    if (!this.isOpen) {
+        this.open();
+    }
+    this.reset();
 }
