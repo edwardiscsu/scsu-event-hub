@@ -63,3 +63,11 @@ textarea {
 .navigation-color {
     
 }
+
+a.header-button {
+    color:#ffffff;
+}
+
+a.header-button:hover {
+    background-color:blue;
+}
