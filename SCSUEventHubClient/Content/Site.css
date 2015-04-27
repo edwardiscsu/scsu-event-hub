@@ -63,3 +63,27 @@ textarea {
 .navigation-color {
     
 }
+
+
+/* Common Styles for the SPA
+----------------------------------------------------------*/
+.display-none {
+    display:none;
+}
+
+.visibility-hidden {
+    visibility:hidden;
+}
+
+
+/* Styles for the SPA
+----------------------------------------------------------*/
+#master-detail-menu {
+    width:400px;
+    height:700px;
+    z-index:99;
+    border:solid;
+    border-width:1px;
+    position:absolute;
+    background-color:#ffffff;
+}
