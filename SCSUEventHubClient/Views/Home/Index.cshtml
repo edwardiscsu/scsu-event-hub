@@ -15,7 +15,9 @@
         <nav class="navbar navbar-default" style="background-color:#b13c37">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <a href="#" class="navbar-brand header-button"><span class="glyphicon glyphicon-th-list"></span></a>
+                    <a href="#" class="navbar-brand header-button" id="cmd-app-menu-open">
+                        <span class="glyphicon glyphicon-th-list"></span>
+                    </a>
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right" id="app-login-area">
@@ -24,12 +26,15 @@
                 </div>
             </div>
         </nav>
-        <div id="app-menu" class="row">
-            <div class="col-md-8">.col-md-8</div>
 
         <!-- the side menu -->
         <div id="master-detail-menu" class="display-none">
-            
+            <ul class="list-group">
+                <li class="list-group-item main-menu-clickable">Morbi leo risus</li>
+                <li id="cmd-categories-all" class="list-group-item main-menu-clickable">All Categories</li>
+                <li id="cmd-categories-menu" class="list-group-item main-menu-clickable">Categories</li>
+            </ul>
+
         </div>
 
         <div id="event-browser">

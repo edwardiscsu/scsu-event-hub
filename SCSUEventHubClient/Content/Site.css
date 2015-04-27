@@ -75,15 +75,24 @@ textarea {
     visibility:hidden;
 }
 
+.main-menu-clickable {
+
+}
+
+.main-menu-clickable:hover {
+    opacity: 0.8;
+}
+
 
 /* Styles for the SPA
 ----------------------------------------------------------*/
 #master-detail-menu {
-    width:400px;
+    /*width:400px;*/
     height:700px;
     z-index:99;
     border:solid;
     border-width:1px;
     position:absolute;
-    background-color:#ffffff;
+    background-color:#000000;
+    opacity: 0.3;
 }

@@ -44,6 +44,13 @@ namespace SCSUEventHubClient
                         "~/Content/themes/base/jquery.ui.datepicker.css",
                         "~/Content/themes/base/jquery.ui.progressbar.css",
                         "~/Content/themes/base/jquery.ui.theme.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/local").Include(
+                      "~/Scripts/Service/CategoryService.js",
+                      "~/Scripts/Service/UserService.js",
+                      "~/Scripts/UserInterface/AppMenuShelf.js",
+                      "~/Scripts/UserInterface/CategoriesFilterMenu.js",
+                      "~/Scripts/UserInterface/InitializeUI.js"));
         }
     }
 }
