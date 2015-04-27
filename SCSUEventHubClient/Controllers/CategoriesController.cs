@@ -1,4 +1,5 @@
 ﻿using SCSUEventHubModels.Models;
+using SCSUEventHubRepository.CategoriesRepositories;
 using SCSUEventHubRepository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,17 +14,22 @@ namespace SCSUEventHubClient.Controllers
     {
         private ICategoriesRepository categoriesRepository;
 
+        public CategoriesController()
+        {
+            this.categoriesRepository = new CategoriesRepository();
+        }
+
         public CategoriesController(ICategoriesRepository categoriesRepository)
         {
             this.categoriesRepository = categoriesRepository;
         }
 
-        public IEnumerable<Category> Get()
+        public IEnumerable<Category> GetAllCategories()
         {
             return categoriesRepository.Categories;
         }
 
-        public Category Get(int id)
+        public Category GetCategory(int id)
         {
             Category category = categoriesRepository.FindCategoryById(id);
             if (category == null)

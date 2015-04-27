@@ -1,32 +1,24 @@
 ﻿function CategoryService(baseUrl) {
     this.baseUrl = baseUrl;
     this.categories = [];
+    this.onCategoriesLoaded = [];
 };
 
 CategoryService.prototype.loadAllCategories = function () {
+    var originalThis = this;
     var requestUrl = this.baseUrl;
     $.ajax({
         url: requestUrl,
+        dataType: "json",
         method: "GET"
     }).done(function (data) {
         var length = data.length;
         for (var i = 0; i < length; i++) {
-            this.categories.push({ID: data[i].ID, CategoryName: data[i].CategoryName});
+            originalThis.categories.push({ ID: data[i].ID, CategoryName: data[i].CategoryName });
         }
+        originalThis.categoriesLoaded();
     }).fail(function () {
         console.log("loadAllCategories");
-    });
-};
-
-CategoryService.prototype.loadCategoryById = function (id) {
-    var requestUrl = this.baseUrl + "/" + id;
-    $.ajax({
-        url: requestUrl,
-        method: "GET"
-    }).done(function (data) {
-        this.categories.push({ ID: data.ID, CategoryName: data.CategoryName });
-    }).fail(function () {
-        console.log("loadCategoryById: failed");
     });
 };
 
@@ -37,3 +29,14 @@ CategoryService.prototype.getCategoryId = function (name) {
         }
     });
 };
+
+CategoryService.prototype.categoriesLoaded = function () {
+    var length = this.onCategoriesLoaded.length;
+    for (var i = 0; i < length; i++) {
+        this.onCategoriesLoaded[i](this);
+    }
+}
+
+CategoryService.prototype.addCategoriesLoadedListener = function (func) {
+    this.onCategoriesLoaded.push(func);
+}

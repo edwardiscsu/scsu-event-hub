@@ -12,7 +12,7 @@ AppMenuShelf.prototype.open = function () {
     $("#" + this.appMenuId).css("display","block");
     $("#" + this.appMenuId).animate({
         width: "400px",
-        opacity: 0.9
+        opacity: 0.95
     }, this.animationTime, function () {
         originalThis.isOpen = true;
     });
@@ -24,8 +24,8 @@ AppMenuShelf.prototype.close = function () {
         width: "0px",
         opacity: 0.3
     }, this.animationTime, function () {
-        originalThis.isOpen = false;
         $("#" + originalThis.appMenuId).css("display", "none");
+        originalThis.isOpen = false;
     });
 }
 

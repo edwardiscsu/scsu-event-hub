@@ -80,7 +80,19 @@ textarea {
 }
 
 .main-menu-clickable:hover {
-    opacity: 0.8;
+    background-color: #eeeeee;
+}
+
+.main-menu-subitem {
+    background-color: #dddddd;
+}
+
+.header-button {
+    color:#ffffff;
+}
+
+.header-button:hover {
+    color:#dddddd;
 }
 
 
