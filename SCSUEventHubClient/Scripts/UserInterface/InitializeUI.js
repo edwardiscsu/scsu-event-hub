@@ -3,15 +3,19 @@
         e.preventDefault();
     });
 
-    eventService = new EventService("/api/events");
+    var userService = new UserService("api/Account");
+    var eventService = new EventService("/api/events");
 
-    var loginScreen = new LoginScreen("login-screen", "cmd-login-screen");
+    var loginScreen = new LoginScreen("login-screen", "cmd-login-screen", userService);
+    var registerScreen = new RegisterScreen("register-screen", "cmd-register-screen", userService);
     var eventScreen = new EventScreen("event-browser", eventService);
 
     var contentPanelObjects = [];
     contentPanelObjects.push(loginScreen);
+    contentPanelObjects.push(registerScreen);
     contentPanelObjects.push(eventScreen);
     loginScreen.contentPanelObjects = contentPanelObjects;
+    registerScreen.contentPanelObjects = contentPanelObjects;
     eventScreen.contentPanelObjects = contentPanelObjects;
 
     var appMenu = new AppMenuShelf("master-detail-menu", "cmd-app-menu-open");

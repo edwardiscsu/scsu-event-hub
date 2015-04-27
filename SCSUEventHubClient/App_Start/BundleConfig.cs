@@ -55,6 +55,7 @@ namespace SCSUEventHubClient
                       "~/Scripts/UserInterface/AppMenuShelf.js",
                       "~/Scripts/UserInterface/CategoriesFilterMenu.js",
                       "~/Scripts/UserInterface/LoginScreen.js",
+                      "~/Scripts/UserInterface/RegisterScreen.js",
                       "~/Scripts/UserInterface/EventScreen.js",
                       "~/Scripts/UserInterface/InitializeUI.js"));
         }

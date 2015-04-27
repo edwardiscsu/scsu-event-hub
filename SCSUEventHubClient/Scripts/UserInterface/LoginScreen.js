@@ -1,7 +1,8 @@
-﻿function LoginScreen(contentPaneId, openButtonId) {
+﻿function LoginScreen(contentPaneId, openButtonId, userService) {
     this.contentPaneId = contentPaneId;
     this.openButtonId = openButtonId;
-    this.animationTime = 600;
+    this.userService = userService;
+    this.animationTime = 500;
     this.contentPanelObjects = [];
     this.isOpen = false;
 

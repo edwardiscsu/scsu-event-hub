@@ -2,7 +2,7 @@
     this.categoryMenuId = categoryMenuId;
     this.openButtonId = openButtonId;
     this.categoryAllId = categoryAllId;
-    this.animationTime = 600;
+    this.animationTime = 500;
     this.isOpen = false;
     this.onCategoryClicked = [];
     this.categorySelected = -1;

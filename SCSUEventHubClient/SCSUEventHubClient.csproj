@@ -313,8 +313,11 @@
     <Content Include="Scripts\UserInterface\EventScreen.js" />
     <Content Include="Scripts\UserInterface\InitializeUI.js" />
     <Content Include="Scripts\UserInterface\LoginScreen.js" />
+    <Content Include="Scripts\UserInterface\RegisterScreen.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Home\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\_RegisterPartial.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />

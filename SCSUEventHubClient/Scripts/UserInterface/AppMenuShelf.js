@@ -1,7 +1,7 @@
 ﻿function AppMenuShelf(appMenuId, openButtonId) {
     this.appMenuId = appMenuId;
     this.openButtonId = openButtonId;
-    this.animationTime = 600;
+    this.animationTime = 500;
     this.isOpen = false;
 
     $('#' + this.openButtonId).on("click", $.proxy(this.handleMenuClickEvent, this));

@@ -1,11 +1,9 @@
 ﻿function EventScreen(contentPaneId, eventService) {
     this.contentPaneId = contentPaneId;
     this.eventService = eventService;
-    this.animationTime = 600;
+    this.animationTime = 500;
     this.contentPanelObjects = [];
     this.isOpen = false;
-
-
 }
 
 EventScreen.prototype.open = function () {
@@ -47,6 +45,10 @@ EventScreen.prototype.reset = function (filterId) {
 
 }
 
+EventScreen.prototype.addEvent = function (data) {
+
+}
+
 EventScreen.prototype.closeContentPanels = function () {
     var length = this.contentPanelObjects.length;
     for (var i = 0; i < length; i++) {
@@ -60,5 +62,5 @@ EventScreen.prototype.handleCategoryClicked = function (filter) {
     if (!this.isOpen) {
         this.open();
     }
-    this.reset();
+    this.reset(filter.categorySelected);
 }
