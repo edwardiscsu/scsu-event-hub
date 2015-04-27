@@ -23,14 +23,15 @@ namespace SCSUEventHubClient.Controllers
             return categoriesRepository.Categories;
         }
 
-        public IHttpActionResult Get(int id)
+        public Category Get(int id)
         {
             Category category = categoriesRepository.FindCategoryById(id);
             if (category == null)
             {
-                return NotFound();
+                //return NotFound();
             }
-            return Ok(category);
+            return category;
+            //return Ok(category);
         }
     }
 }

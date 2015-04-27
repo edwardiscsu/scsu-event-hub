@@ -83,16 +83,20 @@ namespace SCSUEventHubRepository.Migrations
                 categories
             );
 
+            context.SaveChanges();
+
             Event[] events = new Event[] {
-                new Event { CategoryID = context.Categories.ElementAt(0).ID, EventName = "Hockey with Santa", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" },
-                new Event { CategoryID = context.Categories.ElementAt(0).ID, EventName = "Hockey with Santa", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" },
-                new Event { CategoryID = context.Categories.ElementAt(0).ID, EventName = "Hockey with Santa", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" }
+                new Event { CategoryID = categories[0].ID, EventName = "Hockey with Santa 1", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" },
+                new Event { CategoryID = categories[0].ID, EventName = "Hockey with Santa 2", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" },
+                new Event { CategoryID = categories[0].ID, EventName = "Hockey with Santa 3", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" }
             };
 
             context.Events.AddOrUpdate(
                 record => record.EventName,
                 events
             );
+
+            context.SaveChanges();
 
             Recommendation[] recommendations = new Recommendation[] {
 
@@ -103,6 +107,8 @@ namespace SCSUEventHubRepository.Migrations
                 recommendations
             );
 
+            context.SaveChanges();
+
             CategorySubscription[] categorySubscriptions = new CategorySubscription[] {
 
             };
@@ -112,6 +118,8 @@ namespace SCSUEventHubRepository.Migrations
                 categorySubscriptions
             );
 
+            context.SaveChanges();
+
             Reminder[] reminders = new Reminder[] {
 
             };
@@ -120,6 +128,8 @@ namespace SCSUEventHubRepository.Migrations
                 record => new { record.SubscriptionID, record.IsActive, record.DateTime },
                 reminders
             );
+
+            context.SaveChanges();
 
             Subscription[] subscriptions = new Subscription[] {
 
