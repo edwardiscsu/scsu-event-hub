@@ -21,7 +21,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right" id="app-login-area">
-                        <li><a href="#" class="header-button"><span class="glyphicon glyphicon-log-in"></span></a></li>
+                        <li><a href="#" class="header-button" id="cmd-login-screen"><span class="glyphicon glyphicon-log-in"></span></a></li>
                     </ul>
                 </div>
             </div>
@@ -31,7 +31,7 @@
         <div id="master-detail-menu" class="display-none">
             <ul class="list-group">
                 <li class="list-group-item main-menu-clickable">Morbi leo risus</li>
-                <li id="cmd-categories-all" class="list-group-item main-menu-clickable">All Categories</li>
+                <li id="cmd-categories-all" data-category-id="-1" class="list-group-item main-menu-clickable">All Categories</li>
                 <li id="cmd-categories-menu" class="list-group-item main-menu-clickable">Categories</li>
                 <li>
                     <ul id="category-filter-menu" class="list-group"></ul>                
@@ -39,33 +39,40 @@
             </ul>
         </div>
 
-        <div id="event-browser">
+        <div id="app-content-pane">
+            <div id="event-browser">
 
-            <div class="events" style="text-align:left;background-color:#f7f3f3;"> 
-                <div class="event-item" style="margin:3px 5px 3px 5px;background-color:#ffffff;">
-                    <div class="row event-intro">
-                        <div class="event-image col-xs-3" >
-                            <span class="glyphicon glyphicon-picture" ></span>
+                <div class="events" style="text-align:left;background-color:#f7f3f3;">
+                    <div class="event-item" style="margin:3px 5px 3px 5px;background-color:#ffffff;">
+                        <div class="row event-intro">
+                            <div class="event-image col-xs-3">
+                                <span class="glyphicon glyphicon-picture"></span>
+                            </div>
+                            <div class="event-title-time col-xs-9">
+                                <div><strong style="font-size:large;">Super Event</strong></div>
+                                <div style="color:#808080;">04/26/2015</div>
+                                <div style="color:#808080;">1:00PM - 3:00PM</div>
+                                <div style="color:#808080;">Atwood Ballroom</div>
+                            </div>
                         </div>
-                        <div class="event-title-time col-xs-9" >
-                            <div><strong style="font-size:large;">Super Event</strong></div>
-                            <div style="color:#808080;">04/26/2015</div>
-                            <div style="color:#808080;">1:00PM - 3:00PM</div>
-                            <div style="color:#808080;">Atwood Ballroom</div>
-                        </div>
-                    </div>
-                    
-                    <div class="event-content" style="display:inline-block;height:80px;text-align:left;">
-                        <div class="event-description" style="padding:5px;">
-                            Lorem ipsum dolor sit amet, ne mel recteque urbanitas neglegentur, tantas nullam sed at. Vis no nisl democritum. Graeco posidonium honestatis mei ad, an usu nihil fabulas. Id movet lobortis eos. Brute pericula vel at, eu per affert eruditi offendit.
-                        </div>
-                        <div class="event-buttons" style="text-align:right;padding:5px;">
-                            <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-star-empty"></span></a>
-                            <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-option-vertical"></span></a>
+
+                        <div class="event-content" style="display:inline-block;height:80px;text-align:left;">
+                            <div class="event-description" style="padding:5px;">
+                                Lorem ipsum dolor sit amet, ne mel recteque urbanitas neglegentur, tantas nullam sed at. Vis no nisl democritum. Graeco posidonium honestatis mei ad, an usu nihil fabulas. Id movet lobortis eos. Brute pericula vel at, eu per affert eruditi offendit.
+                            </div>
+                            <div class="event-buttons" style="text-align:right;padding:5px;">
+                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-star-empty"></span></a>
+                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-option-vertical"></span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div id="login-screen">
+
+            </div>
         </div>
+
     </div>
 </div>

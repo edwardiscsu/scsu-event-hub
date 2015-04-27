@@ -1,4 +1,4 @@
-﻿function LoginScreen(contentPaneId, openButtonId) {
+﻿function EventScreen(contentPaneId, openButtonId) {
     this.contentPaneId = contentPaneId;
     this.openButtonId = openButtonId;
     this.animationTime = 600;
@@ -7,7 +7,7 @@
     $('#' + this.openButtonId).on("click", $.proxy(this.handleOpenClickEvent, this));
 }
 
-LoginScreen.prototype.open = function () {
+EventScreen.prototype.open = function () {
     var originalThis = this;
     $("#" + this.contentPaneId).css("display", "block");
     $("#" + this.contentPaneId).animate({
@@ -18,7 +18,7 @@ LoginScreen.prototype.open = function () {
     });
 }
 
-LoginScreen.prototype.close = function () {
+EventScreen.prototype.close = function () {
     var originalThis = this;
     $("#" + this.contentPaneId).animate({
 
@@ -29,6 +29,6 @@ LoginScreen.prototype.close = function () {
     });
 }
 
-LoginScreen.prototype.handleOpenClickEvent = function () {
-    
+EventScreen.prototype.handleOpenClickEvent = function () {
+
 }

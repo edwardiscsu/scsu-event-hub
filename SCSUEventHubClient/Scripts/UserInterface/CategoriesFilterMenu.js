@@ -3,6 +3,8 @@
     this.openButtonId = openButtonId;
     this.animationTime = 600;
     this.isOpen = false;
+    this.onCategoryClicked = [];
+    this.categorySelected = -1;
 
     $('#' + this.openButtonId).on("click", $.proxy(this.handleMenuClickEvent, this));
 };
@@ -46,8 +48,6 @@ CategoriesFilterMenu.prototype.handleMenuClickEvent = function () {
 }
 
 CategoriesFilterMenu.prototype.addCategoriesToList = function (categories) {
-    console.log("IN");
-    console.log(categories);
     var length = categories.length;
     for (var i = 0; i < length; i++) {
         this.addCategoryToList(categories[i]);
@@ -64,5 +64,21 @@ CategoriesFilterMenu.prototype.addCategoryToList = function (category) {
             .css("display", "none")
             .data("category-id", category.ID)
             .text(category.CategoryName)
+            .on("click", $.proxy(this.handleCategoryClicked, this))
     );
+}
+
+CategoriesFilterMenu.prototype.categoryClicked = function () {
+    var length = this.onCategoryClicked.length;
+    for (var i = 0; i < length; i++) {
+        this.onCategoryClicked[i](this);
+    }
+}
+
+CategoriesFilterMenu.prototype.addCategoryClickedListener = function (func) {
+    this.onCategoryClicked.push(func);
+}
+
+CategoriesFilterMenu.prototype.handleCategoryClicked = function (event) {
+    this.categoryClicked();
 }
