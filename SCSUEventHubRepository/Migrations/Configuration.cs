@@ -84,7 +84,9 @@ namespace SCSUEventHubRepository.Migrations
             );
 
             Event[] events = new Event[] {
-
+                new Event { CategoryID = context.Categories.ElementAt(0).ID, EventName = "Hockey with Santa", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" },
+                new Event { CategoryID = context.Categories.ElementAt(0).ID, EventName = "Hockey with Santa", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" },
+                new Event { CategoryID = context.Categories.ElementAt(0).ID, EventName = "Hockey with Santa", DateTime = new DateTime(2015,5,6), Description = "play some hockey with Santa! It's awesome!" }
             };
 
             context.Events.AddOrUpdate(
