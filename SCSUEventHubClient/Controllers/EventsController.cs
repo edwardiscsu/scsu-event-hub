@@ -25,7 +25,7 @@ namespace SCSUEventHubClient.Controllers
 
 
         // GET: Events/Get/?userID=1&categoryID=2&adminID=3
-        public List<Event> Get(int? userID = null, int? categoryID = null, int? adminID = null)
+        public JsonResult Get(int? userID = null, int? categoryID = null, int? adminID = null)
         {
             var events = new List<Event>();
 
@@ -38,7 +38,7 @@ namespace SCSUEventHubClient.Controllers
                 throw new HttpException(e.Message);
             }
 
-            return events;
+            return Json(events, JsonRequestBehavior.AllowGet);
         }
     }
 }
