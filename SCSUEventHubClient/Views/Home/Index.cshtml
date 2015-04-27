@@ -30,7 +30,6 @@
         <!-- the side menu -->
         <div id="master-detail-menu" class="display-none">
             <ul class="list-group">
-                <li class="list-group-item main-menu-clickable">Morbi leo risus</li>
                 <li id="cmd-categories-all" data-category-id="-1" class="list-group-item main-menu-clickable">All Categories</li>
                 <li id="cmd-categories-menu" class="list-group-item main-menu-clickable">Categories</li>
                 <li>
@@ -69,8 +68,23 @@
                 </div>
             </div>
 
-            <div id="login-screen">
-
+            <div id="login-screen" class="display-none">
+                <form id="login-screen-form">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Remember Me
+                        </label>
+                    </div>
+                    <a href="#" class="btn btn-default">Login</a>
+                </form>
             </div>
         </div>
 

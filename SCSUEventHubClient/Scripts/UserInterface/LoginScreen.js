@@ -2,6 +2,7 @@
     this.contentPaneId = contentPaneId;
     this.openButtonId = openButtonId;
     this.animationTime = 600;
+    this.contentPanelObjects = [];
     this.isOpen = false;
 
     $('#' + this.openButtonId).on("click", $.proxy(this.handleOpenClickEvent, this));
@@ -9,13 +10,18 @@
 
 LoginScreen.prototype.open = function () {
     var originalThis = this;
-    $("#" + this.contentPaneId).css("display", "block");
-    $("#" + this.contentPaneId).animate({
-
-        opacity: 1.0
-    }, this.animationTime, function () {
-        originalThis.isOpen = true;
-    });
+    this.closeContentPanels();
+    setTimeout(
+        function () {
+            $("#" + originalThis.contentPaneId).css("display", "block");
+            $("#" + originalThis.contentPaneId).animate({
+                opacity: 1.0
+            }, originalThis.animationTime, function () {
+                originalThis.isOpen = true;
+            });
+        },
+        this.animationTime
+    );
 }
 
 LoginScreen.prototype.close = function () {
@@ -29,10 +35,16 @@ LoginScreen.prototype.close = function () {
 }
 
 LoginScreen.prototype.handleOpenClickEvent = function () {
-    if (this.isOpen) {
-        this.close();
-    }
-    else {
+    if (!this.isOpen) {
         this.open();
+    }
+}
+
+LoginScreen.prototype.closeContentPanels = function () {
+    var length = this.contentPanelObjects.length;
+    for (var i = 0; i < length; i++) {
+        if (this.contentPanelObjects[i] != this) {
+            this.contentPanelObjects[i].close();
+        }
     }
 }

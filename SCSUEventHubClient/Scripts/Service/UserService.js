@@ -1,4 +1,4 @@
-﻿function UsersService(baseUrl) {
+﻿function UserService(baseUrl) {
     this.baseUrl = baseUrl;
 };
 
