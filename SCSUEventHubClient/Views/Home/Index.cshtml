@@ -38,6 +38,9 @@
                     </a>
                 </div>
                 <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-left">
+                        <li><h4 style="color:#ffffff;padding-top:8px;">All Categories</h4></li>
+                    </ul>
                     <ul class="nav navbar-nav navbar-right" id="app-login-pending">
                         <li>
                             <a href="#" class="header-button" id="cmd-login-screen"><span class="glyphicon glyphicon-log-in"></span></a>
@@ -74,19 +77,20 @@
 
                     <div class="event-item" style="margin:3px 5px 3px 5px;background-color:#ffffff;">
                         <div class="row event-intro">
-                            <div class="event-image col-xs-3">
-                                <span class="glyphicon glyphicon-picture"></span>
+                            <div class="event-image col-xs-3" >
+                                <!--<span class="glyphicon glyphicon-picture"></span>-->
+                                <img data-bind="attr: { src: 'http://localhost:63188/content/images/' + ImageURL }" style="padding:5px 0px 5px 5px;width:100px;height:auto;"/>
                             </div>
                             <div class="event-title-time col-xs-9">
                                 <div><strong style="font-size:large;" data-bind="text: EventName"></strong></div>
                                 <div style="color:#808080;" data-bind="text: DateTime"></div>
                                 <div style="color:#808080;" data-bind="text: DateTime"></div>
-                                <div style="color:#808080;" data-bind="text: DateTime"></div>
+                                <div style="color:#808080;" data-bind="text: 'Atwood Ballroom'"></div>
                             </div>
                         </div>
 
                         <div class="event-content" style="display:inline-block;height:80px;width:400px;text-align:left;">
-                            <div class="event-description" style="padding:5px;" data-bind="text: Description">
+                            <div class="event-description" style="padding:5px;height:30px;overflow:hidden;" data-bind="text: Description" >
                             </div>
                             <div class="event-buttons" style="text-align:right;padding:5px;">
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-star-empty"></span></a>
