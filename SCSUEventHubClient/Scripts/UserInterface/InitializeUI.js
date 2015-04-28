@@ -4,11 +4,14 @@
     });
 
     var userService = new UserService("api/Account");
-    var eventService = new EventService("/api/events");
+    $("#cmd-login-execute").on("click", $.proxy(userService.handleLoginEvent, userService));
+    $("#cmd-register-execute").on("click", $.proxy(userService.handleRegiserEvent, userService));
+    $("#cmd-logout-execute").on("click", $.proxy(userService.handleLogoutEvent, userService));
+    //var eventService = new EventService("/api/events");
 
     var loginScreen = new LoginScreen("login-screen", "cmd-login-screen", userService);
     var registerScreen = new RegisterScreen("register-screen", "cmd-register-screen", userService);
-    var eventScreen = new EventScreen("event-browser", eventService);
+    var eventScreen = new EventScreen("event-browser");
 
     var contentPanelObjects = [];
     contentPanelObjects.push(loginScreen);
