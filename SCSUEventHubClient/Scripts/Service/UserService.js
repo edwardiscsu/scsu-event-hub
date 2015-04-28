@@ -15,10 +15,11 @@ UserService.prototype.loginRequest = function (data) {
     }).done(function (data) {
         originalThis.user = data;
         originalThis.login();
-        this.isLoggedIn = true;
+        $("#login-screen-form-email").val("");
+        $("#login-screen-form-password").val("");
     }).fail(function (xhr) {
         console.log(xhr);
-        var alert = $('<div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><h4>Error</h4><p>' + xhr.responseText + '</p></div>');
+        var alert = $('<div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><h4>' + xhr.statusText + '</h4><p>' + xhr.responseText + '</p></div>');
         $("#login-screen-form").append(alert);
     });
 };
@@ -34,18 +35,24 @@ UserService.prototype.registerRequest = function (data) {
     }).done(function (data) {
         originalThis.user = data;
         originalThis.login();
+        $("#register-screen-form-email").val("");
+        $("#register-screen-form-password").val("");
+        $("#register-screen-form-confirm-password").val("");
         console.log(data);
     }).fail(function (xhr) {
         console.log(xhr);
-        var alert = $('<div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><h4>Error</h4><p>' + xhr.responseText + '</p></div>');
+        var alert = $('<div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><h4>' + xhr.statusText + '</h4><p>' + xhr.responseText + '</p></div>');
         $("#register-screen-form").append(alert);
     });
 };
 
 UserService.prototype.login = function () {
     this.isLoggedIn = true;
-    $("#app-login-pending").css("display", "none");
-    $("#app-login-done").css("display", "block");
+    /*$("#app-login-pending").css("display", "none");
+    $("#app-login-done").css("display", "block");*/
+
+    $("#app-login-pending").hide();
+    $("#app-login-done").show();
     $("#user-welcome").text(this.user.UserName);
     this.postLoginScreen.open();
 };
@@ -53,8 +60,11 @@ UserService.prototype.login = function () {
 UserService.prototype.logout = function () {
     this.user = undefined;
     this.isLoggedIn = false;
-    $("#app-login-pending").css("display", "block");
-    $("#app-login-done").css("display", "none");
+    /*$("#app-login-pending").css("display", "block");
+    $("#app-login-done").css("display", "none");*/
+
+    $("#app-login-pending").show();
+    $("#app-login-done").hide();
     $("#user-welcome").text("");
 };
 
@@ -63,8 +73,8 @@ UserService.prototype.handleRegiserEvent = function (event) {
         "Email": $("#register-screen-form-email").val(),
         "Password": $("#register-screen-form-password").val(),
         "ConfirmPassword": $("#register-screen-form-confirm-password").val()
-    }; 
-    console.log(data);
+    };
+
     this.registerRequest(data);
 };
 
@@ -72,7 +82,6 @@ UserService.prototype.handleLoginEvent = function (event) {
     data = {
         "email": $("#login-screen-form-email").val()
     };
-    console.log(data);
     this.loginRequest(data);
 };
 
