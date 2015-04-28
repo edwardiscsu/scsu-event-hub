@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using SCSUEventHubModels.Models;
 using System;
 using System.Collections.Generic;
@@ -15,9 +16,10 @@ namespace SCSUEventHubRepository.Interfaces
         IEnumerable<IdentityRole> Roles { get; }
         Admin FindAdminById(string adminId);
         User FindUserById(string userId);
+        User FindUserByEmail(string email);
         IList<string> FindRolesForAccount(string userId);
         bool AddAdmin(Admin modelObject);
-        bool AddUser(User modelObject);
+        IdentityResult AddUser(User modelObject);
         bool UpdateAdmin(Admin modelObject);
         bool UpdateUser(User modelObject);
         bool DeleteAdmin(string adminId);

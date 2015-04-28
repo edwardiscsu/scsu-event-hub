@@ -3,7 +3,7 @@
         e.preventDefault();
     });
 
-    var userService = new UserService("api/Account");
+    var userService = new UserService("api/users");
     $("#cmd-login-execute").on("click", $.proxy(userService.handleLoginEvent, userService));
     $("#cmd-register-execute").on("click", $.proxy(userService.handleRegiserEvent, userService));
     $("#cmd-logout-execute").on("click", $.proxy(userService.handleLogoutEvent, userService));

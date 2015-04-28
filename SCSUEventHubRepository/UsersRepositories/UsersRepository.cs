@@ -78,6 +78,14 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             return user;
         }
 
+        public User FindUserByEmail(string email)
+        {
+            User user = (from record in DBContext.ClientUsers
+                         where record.Email == email
+                         select record).SingleOrDefault();
+            return user;
+        }
+
         public IList<string> FindRolesForAccount(string userId)
         {
             return userManager.GetRoles<Account, string>(userId);
@@ -103,11 +111,11 @@ namespace SCSUEventHubRepository.CategoriesRepositories
             }
         }
 
-        public bool AddUser(User modelObject)
+        public IdentityResult AddUser(User modelObject)
         {
             modelObject.UserName = modelObject.Email;
             IdentityResult result = userManager.Create(modelObject, modelObject.Password);
-            return result.Succeeded;
+            return result;
         }
 
         public bool UpdateAdmin(Admin modelObject)
