@@ -66,7 +66,7 @@ namespace SCSUEventHubClient.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             kernel.Bind<ICategoriesRepository>().To<CategoriesRepository>();
-            kernel.Bind<IEventsRepository>().To<EventsRepositoryFake>();
+            kernel.Bind<IEventsRepository>().To<EventsRepository>();
             kernel.Bind<IRecommendationsRepository>().To<RecommendationsRepository>();
             kernel.Bind<IUsersRepository>().To<UsersRepository>();
         }        

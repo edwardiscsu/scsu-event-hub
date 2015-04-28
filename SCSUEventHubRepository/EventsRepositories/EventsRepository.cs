@@ -75,6 +75,15 @@ namespace SCSUEventHubRepository.EventsRepositories
                                     && (adminID.HasValue ? e.AdminID == adminID.Value : e.ID == e.ID))
                                     .ToList();
                 }
+
+                //Temp: Clean up the relational items
+                foreach (var dEvent in dEvents)
+                {
+                    dEvent.Category = null;
+                    dEvent.Admin = null;
+                    dEvent.Recommendations = null;
+                    dEvent.Subscriptions = null;
+                }
             }
             catch (Exception e)
             {
