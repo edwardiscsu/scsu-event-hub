@@ -1,24 +1,29 @@
-﻿function UserService(baseUrl) {
+﻿function UserService(baseUrl, postLoginScreen) {
     this.baseUrl = baseUrl;
-    this.userId = undefined;
-    this.username = undefined;
+    this.postLoginScreen = postLoginScreen;
+    this.user = undefined;
+    this.isLoggedIn = false;
 };
 
-UserService.prototype.login = function (data) {
+UserService.prototype.loginRequest = function (data) {
     var originalThis = this;
-    var requestUrl = this.baseUrl + data;
+    var requestUrl = this.baseUrl + "?email=" + data["email"];
     $.ajax({
         url: requestUrl,
         dataType: "json",
-        method: "GET"
+        method: "GET",
     }).done(function (data) {
-
-    }).fail(function () {
-
+        originalThis.user = data;
+        originalThis.login();
+        this.isLoggedIn = true;
+    }).fail(function (xhr) {
+        console.log(xhr);
+        var alert = $('<div class="alert alert-danger alert-dismissible fade in" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button><h4>Error</h4><p>' + xhr.responseText + '</p></div>');
+        $("#login-screen-form").append(alert);
     });
 };
 
-UserService.prototype.register = function (data) {
+UserService.prototype.registerRequest = function (data) {
     var originalThis = this;
     var requestUrl = this.baseUrl;
     $.ajax({
@@ -27,6 +32,8 @@ UserService.prototype.register = function (data) {
         method: "POST",
         data: data
     }).done(function (data) {
+        originalThis.user = data;
+        originalThis.login();
         console.log(data);
     }).fail(function (xhr) {
         console.log(xhr);
@@ -35,18 +42,20 @@ UserService.prototype.register = function (data) {
     });
 };
 
-UserService.prototype.logout = function (data) {
-    var originalThis = this;
-    var requestUrl = this.baseUrl + data;
-    $.ajax({
-        url: requestUrl,
-        dataType: "json",
-        method: "POST"
-    }).done(function (data) {
+UserService.prototype.login = function () {
+    this.isLoggedIn = true;
+    $("#app-login-pending").css("display", "none");
+    $("#app-login-done").css("display", "block");
+    $("#user-welcome").text(this.user.UserName);
+    this.postLoginScreen.open();
+};
 
-    }).fail(function () {
-
-    });
+UserService.prototype.logout = function () {
+    this.user = undefined;
+    this.isLoggedIn = false;
+    $("#app-login-pending").css("display", "block");
+    $("#app-login-done").css("display", "none");
+    $("#user-welcome").text("");
 };
 
 UserService.prototype.handleRegiserEvent = function (event) {
@@ -56,17 +65,17 @@ UserService.prototype.handleRegiserEvent = function (event) {
         "ConfirmPassword": $("#register-screen-form-confirm-password").val()
     }; 
     console.log(data);
-    this.register(data);
+    this.registerRequest(data);
 };
 
 UserService.prototype.handleLoginEvent = function (event) {
-    data = $("#login-screen-form-email").val();
+    data = {
+        "email": $("#login-screen-form-email").val()
+    };
     console.log(data);
-    this.login(data);
+    this.loginRequest(data);
 };
 
 UserService.prototype.handleLogoutEvent = function (event) {
-    data = $("#login-screen-form-email").val();
-    console.log(data);
-    this.logout(data);
+    this.logout();
 };

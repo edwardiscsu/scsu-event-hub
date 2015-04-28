@@ -3,7 +3,7 @@
         e.preventDefault();
     });
 
-    var userService = new UserService("api/users");
+    var userService = new UserService("/api/users");
     $("#cmd-login-execute").on("click", $.proxy(userService.handleLoginEvent, userService));
     $("#cmd-register-execute").on("click", $.proxy(userService.handleRegiserEvent, userService));
     $("#cmd-logout-execute").on("click", $.proxy(userService.handleLogoutEvent, userService));
@@ -12,6 +12,7 @@
     var loginScreen = new LoginScreen("login-screen", "cmd-login-screen", userService);
     var registerScreen = new RegisterScreen("register-screen", "cmd-register-screen", userService);
     var eventScreen = new EventScreen("event-browser");
+    userService.postLoginScreen = eventScreen;
 
     var contentPanelObjects = [];
     contentPanelObjects.push(loginScreen);
