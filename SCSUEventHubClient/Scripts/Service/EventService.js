@@ -13,7 +13,8 @@
             Date: "",
             Time: "",
             ImageURL: "",
-            Description: ""
+            Description: "",
+            Subscribed: false
         });
 
         self.events = ko.observableArray([]);
@@ -25,6 +26,16 @@
         }
         self.toggleEventDetail = function () {
             $('#event-detail-container').toggleClass('display-none');
+        }
+
+        self.refreshSubscription = function (newEvent) {
+            for (i = 0; i < self.events().length; i++)
+                if (self.events()[i].ID == newEvent.ID)
+                    self.events()[i].Subscribed = true;
+            $('#event-subscription-container').toggleClass('display-none');
+        }
+        self.toggleSubscription = function () {
+            $('#event-subscription-container').toggleClass('display-none');
         }
 
         self.refreshEvents = function (categoryID, categoryName) {
@@ -51,7 +62,8 @@
                             Date: newEvent.Date,
                             Time: newEvent.Time,
                             ImageURL: newEvent.ImageURL,
-                            Description: newEvent.Description
+                            Description: newEvent.Description,
+                            Subscribed: false
                         });
                     });
                 },
