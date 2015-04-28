@@ -108,3 +108,19 @@ textarea {
     background-color:#000000;
     opacity: 0.3;
 }
+
+#event-detail-container {
+    margin:25px;
+    width:400px;
+    height:700px;
+    z-index:99;
+    border:solid;
+    border-width:1px;
+    position:absolute;
+    background-color:#000000;
+    opacity: 0.3;
+}
+
+#event-subscription-container {
+
+}

@@ -1,15 +1,20 @@
 ﻿
-$(document).ready(function () {
+//$(document).ready(function () {
+//function InitializeEvents() {
 
     function EventsViewModel() {
         var self = this;
 
         self.events = ko.observableArray([]);
+        self.categoryTitle = ko.observable('All Categories')
 
-        self.refreshEvents = function () {
+        self.refreshEvents = function (categoryID, categoryName) {
+            var params = categoryID !== null ? '?categoryID=' + categoryID : '';
+            self.categoryTitle(categoryID !== null ? categoryName : 'All Categories');
+
             $.ajax({
                 type: 'GET',
-                url: 'http://localhost:63188/events/get/',
+                url: 'http://localhost:63188/events/get/' + params,
                 contentType: 'application/json; charset=utf-8',
                 dataType: "json",
                 beforeSend: function (xhr) {
@@ -39,9 +44,10 @@ $(document).ready(function () {
                 }
             });
         };
-        self.refreshEvents(); //Initial values
+        self.refreshEvents(null, null); //Initial values
     }
 
-    ko.applyBindings(new EventsViewModel());
+    //ko.applyBindings(new EventsViewModel());
 
-});
+//});
+//}

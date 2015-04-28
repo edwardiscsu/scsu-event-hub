@@ -34,4 +34,5 @@
         filterMenu.addCategoriesToList(categoryService.categories);
     });
     categoryService.loadAllCategories();
+    //ko.applyBindings(new EventsViewModel());
 });
