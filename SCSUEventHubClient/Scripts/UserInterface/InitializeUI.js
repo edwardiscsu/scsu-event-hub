@@ -24,6 +24,9 @@
     var appMenu = new AppMenuShelf("master-detail-menu", "cmd-app-menu-open");
     var filterMenu = new CategoriesFilterMenu("category-filter-menu", "cmd-categories-all", "cmd-categories-menu");
     filterMenu.addCategoryClickedListener($.proxy(eventScreen.handleCategoryClicked, eventScreen));
+    filterMenu.addCategoryClickedListener(function () {
+        appMenu.close();
+    });
 
     var categoryService = new CategoryService("/api/categories");
     categoryService.addCategoriesLoadedListener(function () {
