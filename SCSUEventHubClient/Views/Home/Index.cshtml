@@ -77,6 +77,38 @@
         <div id="app-content-pane">
             <div id="event-browser">
 
+                <!--The event detail-->
+                <div id="event-detail-container" class="display-none">
+
+                    <div class="row" style="padding-top:10px;">
+                        <div class="col-xs-10"></div>
+                        <div class="col-xs-2"><span style="cursor:pointer;" data-bind="click: $root.toggleEventDetail" class="glyphicon glyphicon-remove"></span></div>
+                    </div>
+
+                    <div><strong style="font-size:large;" data-bind="text: eventDetail().EventName"></strong></div>
+                    <br />
+
+                    <div class="row event-intro">
+                        <div class="event-image col-xs-3" >
+                            <!--<span class="glyphicon glyphicon-picture"></span>-->
+                            <img data-bind="attr: { src: 'http://localhost:63188/content/images/' + eventDetail().ImageURL }" style="padding:5px 0px 5px 5px;width:100px;height:auto;"/>
+                        </div>
+                        <div class="event-title-time col-xs-9" style="padding-top:5px;">
+                            <div style="color:#808080;" data-bind="text: eventDetail().Date"></div>
+                            <div style="color:#808080;" data-bind="text: 'Atwood Ballroom'"></div>
+                        </div>
+                    </div>
+
+                    <div class="event-content" style="display:inline-block;width:400px;text-align:left;">
+                        <div class="event-description" style="padding:10px 5px 5px 5px;" data-bind="text: eventDetail().Description" >
+                        </div>
+                    </div>
+                </div>
+
+                <!--The subscription box-->
+                <div id="event-subscription-container" class="display-none">
+                
+                </div>
                 
                 <div class="modal fade" id="event-modal" role="dialog" aria-hidden="true">
                     <div class="modal-dialog">
@@ -98,7 +130,7 @@
 
                     <div class="event-item" style="margin:3px 5px 3px 5px;background-color:#ffffff;">
                         <div class="row event-intro">
-                            <div class="event-image col-xs-3" >
+                            <div class="event-image col-xs-3" data-bind="click: $parent.refreshEventDetail" style="cursor:pointer;">
                                 <!--<span class="glyphicon glyphicon-picture"></span>-->
                                 <img data-bind="attr: { src: 'http://localhost:63188/content/images/' + ImageURL }" style="padding:5px 0px 5px 5px;width:100px;height:auto;"/>
                             </div>
@@ -121,17 +153,6 @@
 
                 </div>
             </div>
-
-            <!--The event detail-->
-            <div id="event-detail-container" class="display-none">
-
-            </div>
-
-            <!--The subscription box-->
-            <div id="event-subscription-container" class="display-none">
-            
-            </div>
-
             @Html.Partial("_LoginPartial")
             @Html.Partial("_RegisterPartial")
         </div>
