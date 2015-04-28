@@ -1,4 +1,5 @@
-﻿using SCSUEventHubModels.Models;
+﻿using SCSUEventHubClient.Models;
+using SCSUEventHubModels.Models;
 using SCSUEventHubRepository.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -27,18 +28,43 @@ namespace SCSUEventHubClient.Controllers
         // GET: Events/Get/?userID=1&categoryID=2&adminID=3
         public JsonResult Get(int? userID = null, int? categoryID = null, int? adminID = null)
         {
-            var events = new List<Event>();
+            var mEvents = new List<EventModel>();
 
             try
             {
-                events = eventsRepository.GetEvents(userID, categoryID, adminID);
+                var dEvents = eventsRepository.GetEvents(userID, categoryID, adminID);
+                if (null != dEvents)
+                    foreach (var dEvent in dEvents)
+                        mEvents.Add(MapEventToEventModel(dEvent));
             }
             catch (Exception e)
             {
                 throw new HttpException(e.Message);
             }
 
-            return Json(events, JsonRequestBehavior.AllowGet);
+            return Json(mEvents, JsonRequestBehavior.AllowGet);
         }
+
+
+        #region Mapper
+
+        private EventModel MapEventToEventModel(Event dEvent)
+        {
+            var mEvent = new EventModel();
+
+            mEvent.ID = dEvent.ID;
+            mEvent.CategoryID = dEvent.CategoryID;
+            mEvent.AdminID = dEvent.AdminID;
+
+            mEvent.EventName = dEvent.EventName;
+            mEvent.Date = dEvent.DateTime.Value.Date.ToString();
+            mEvent.Time = dEvent.DateTime.Value.TimeOfDay.ToString();
+            mEvent.ImageURL = dEvent.ImageURL;
+            mEvent.Description = dEvent.Description;
+
+            return mEvent;
+        }
+
+        #endregion
     }
 }

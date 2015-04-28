@@ -24,7 +24,8 @@ $(document).ready(function () {
                             CategoryID: newEvent.CategoryID,
                             AdminID: newEvent.AdminID,
                             EventName: newEvent.EventName,
-                            DateTime: newEvent.DateTime,
+                            Date: newEvent.Date,
+                            Time: newEvent.Time,
                             ImageURL: newEvent.ImageURL,
                             Description: newEvent.Description
                         });
