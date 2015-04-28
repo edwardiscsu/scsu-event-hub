@@ -65,7 +65,8 @@
         <!-- the side menu -->
         <div id="master-detail-menu" class="display-none">
             <ul class="list-group">
-                <li id="cmd-categories-all" data-category-id="-1" class="list-group-item main-menu-clickable">All Categories</li>
+                <li id="cmd-categories-all" data-category-id="-1" class="list-group-item main-menu-clickable"
+                    data-bind="click: function () { $root.refreshEvents(null,null) }">All Categories</li>
                 <li id="cmd-categories-menu" class="list-group-item main-menu-clickable">Categories</li>
                 <li>
                     <ul id="category-filter-menu" class="list-group"></ul>                
@@ -120,6 +121,17 @@
 
                 </div>
             </div>
+
+            <!--The event detail-->
+            <div id="event-detail-container" class="display-none">
+
+            </div>
+
+            <!--The subscription box-->
+            <div id="event-subscription-container" class="display-none">
+            
+            </div>
+
             @Html.Partial("_LoginPartial")
             @Html.Partial("_RegisterPartial")
         </div>

@@ -53,6 +53,7 @@ CategoriesFilterMenu.prototype.addCategoriesToList = function (categories) {
     for (var i = 0; i < length; i++) {
         this.addCategoryToList(categories[i]);
     }
+    ko.applyBindings(new EventsViewModel());
 }
 
 CategoriesFilterMenu.prototype.addCategoryToList = function (category) {
@@ -65,6 +66,7 @@ CategoriesFilterMenu.prototype.addCategoryToList = function (category) {
             .data("category-id", category.ID)
             .text(category.CategoryName)
             .on("click", $.proxy(this.handleCategoryClicked, this))
+            .attr("data-bind", "click: function() {$root.refreshEvents(" + category.ID + ",'" + category.CategoryName + "')}")
     );
 }
 
