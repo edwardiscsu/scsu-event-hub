@@ -14,6 +14,7 @@ RegisterScreen.prototype.open = function () {
     this.closeContentPanels();
     setTimeout(
         function () {
+            originalThis.switchAppHeader();
             $("#" + originalThis.contentPaneId).css("display", "block");
             $("#" + originalThis.contentPaneId).animate({
                 opacity: 1.0
@@ -48,4 +49,23 @@ RegisterScreen.prototype.closeContentPanels = function () {
             this.contentPanelObjects[i].close();
         }
     }
+}
+
+RegisterScreen.prototype.switchAppHeader = function () {
+    var originalThis = this;
+    $("#app-page-header").children().each(function () {
+        var child = $(this);
+        child.animate({
+            opacity: 0.0
+        }, originalThis.animationTime / 2, function () {
+            child.remove();
+            var header = $('<h4 style="color:#ffffff;padding-top:8px;opacity:0.0">Register</h4>');
+            $("#app-page-header").append(header);
+            header.animate({
+                opacity: 1.0
+            }, originalThis.animationTime / 2, function () {
+
+            });
+        });
+    })
 }

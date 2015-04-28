@@ -82,6 +82,26 @@ CategoriesFilterMenu.prototype.addCategoryClickedListener = function (func) {
 CategoriesFilterMenu.prototype.handleCategoryClicked = function (event) {
     var categoryId = parseInt($(event.target).data("category-id"));
     this.categorySelected = categoryId;
-    console.log(this.categorySelected);
+
+    this.switchAppHeader($(event.target).text());
     this.categoryClicked();
+}
+
+CategoriesFilterMenu.prototype.switchAppHeader = function (name) {
+    var originalThis = this;
+    $("#app-page-header").children().each(function () {
+        var child = $(this);
+        child.animate({
+            opacity: 0.0
+        }, originalThis.animationTime / 2, function () {
+            child.remove();
+            var header = $('<h4 style="color:#ffffff;padding-top:8px;opacity:0.0">'+name+'</h4>');
+            $("#app-page-header").append(header);
+            header.animate({
+                opacity: 1.0
+            }, originalThis.animationTime / 2, function () {
+
+            });
+        });
+    })
 }

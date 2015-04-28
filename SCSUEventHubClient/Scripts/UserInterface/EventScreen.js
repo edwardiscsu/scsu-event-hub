@@ -11,6 +11,7 @@ EventScreen.prototype.open = function () {
     this.closeContentPanels();
     setTimeout(
         function () {
+            //originalThis.switchAppHeader();
             $("#" + originalThis.contentPaneId).css("display", "block");
             $("#" + originalThis.contentPaneId).animate({
                 opacity: 1.0
@@ -63,4 +64,22 @@ EventScreen.prototype.handleCategoryClicked = function (filter) {
         this.open();
     }
     this.reset(filter.categorySelected);
+}
+
+EventScreen.prototype.switchAppHeader = function () {
+    $("#app-page-header").children.each(function () {
+        var child = $(this);
+        child.animate({
+            opacity: 0.0
+        }, this.animationTime / 2, function () {
+            child.remove();
+            var header = $('<h4 style="color:#ffffff;padding-top:8px;opacity:0.0"></h4>');
+            $("#app-page-header").append(header);
+            header.animate({
+                opacity: 1.0
+            }, this.animationTime / 2, function () {
+
+            });
+        });
+    })
 }
