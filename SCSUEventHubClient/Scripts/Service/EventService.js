@@ -5,8 +5,27 @@
     function EventsViewModel() {
         var self = this;
 
+        self.eventDetail = ko.observable({
+            ID: "",
+            CategoryID: "",
+            AdminID: "",
+            EventName: "",
+            Date: "",
+            Time: "",
+            ImageURL: "",
+            Description: ""
+        });
+
         self.events = ko.observableArray([]);
         self.categoryTitle = ko.observable('All Categories')
+
+        self.refreshEventDetail = function (newEvent) {
+            self.eventDetail(newEvent);
+            $('#event-detail-container').toggleClass('display-none');
+        }
+        self.toggleEventDetail = function () {
+            $('#event-detail-container').toggleClass('display-none');
+        }
 
         self.refreshEvents = function (categoryID, categoryName) {
             var params = categoryID !== null ? '?categoryID=' + categoryID : '';

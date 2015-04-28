@@ -117,8 +117,7 @@ textarea {
     border:solid;
     border-width:1px;
     position:absolute;
-    background-color:#000000;
-    opacity: 0.3;
+    background-color:#ffffff;
 }
 
 #event-subscription-container {
