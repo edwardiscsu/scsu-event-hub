@@ -110,16 +110,27 @@ textarea {
 }
 
 #event-detail-container {
-    margin:25px;
+    margin:100px 25px 0px 25px;
     width:400px;
-    height:700px;
     z-index:99;
     border:solid;
     border-width:1px;
     position:absolute;
     background-color:#ffffff;
+    padding:10px;
 }
 
 #event-subscription-container {
+    margin:100px 25px 0px 25px;
+    width:400px;
+    z-index:99;
+    border:solid;
+    border-width:1px;
+    position:absolute;
+    background-color:#ffffff;
+    padding:10px;
+}
 
+.color-yellow {
+    color:yellow;
 }

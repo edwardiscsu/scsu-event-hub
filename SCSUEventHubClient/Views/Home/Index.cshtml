@@ -80,7 +80,7 @@
                 <!--The event detail-->
                 <div id="event-detail-container" class="display-none">
 
-                    <div class="row" style="padding-top:10px;">
+                    <div class="row">
                         <div class="col-xs-10"></div>
                         <div class="col-xs-2"><span style="cursor:pointer;" data-bind="click: $root.toggleEventDetail" class="glyphicon glyphicon-remove"></span></div>
                     </div>
@@ -107,7 +107,25 @@
 
                 <!--The subscription box-->
                 <div id="event-subscription-container" class="display-none">
-                
+                    
+                    <div class="row">
+                        <div class="col-xs-10"></div>
+                        <div class="col-xs-2"><span style="cursor:pointer;" data-bind="click: $root.toggleSubscription" class="glyphicon glyphicon-remove"></span></div>
+                    </div>
+
+                    <form>
+                        <div class="form-group">
+                            <label for="event-subscription-date">Date</label>
+                            <input type="date" id="event-subscription-date" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="event-subscription-time">Time</label>
+                            <input type="time" id="event-subscription-time" class="form-control" />
+                        </div>
+                        <button type="button" class="btn btn-default" data-bind="click: $root.toggleSubscription">Cancel</button>
+                        <button type="button" class="btn btn-default" data-bind="click: $root.refreshSubscription">Submit</button>
+                    </form>
+
                 </div>
                 
                 <div class="modal fade" id="event-modal" role="dialog" aria-hidden="true">
@@ -145,7 +163,7 @@
                             <div class="event-description" style="padding:5px;height:30px;overflow:hidden;" data-bind="text: Description" >
                             </div>
                             <div class="event-buttons" style="text-align:right;padding:5px;">
-                                <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-star-empty"></span></a>
+                                <a class="btn btn-default" href="#" role="button" data-bind="click: $root.toggleSubscription"><span data-bind="css: { 'color-yellow' : Subscribed}" class="glyphicon glyphicon-star-empty"></span></a>
                                 <a class="btn btn-default" href="#" role="button"><span class="glyphicon glyphicon-option-vertical"></span></a>
                             </div>
                         </div>
