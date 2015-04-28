@@ -33,7 +33,7 @@
 
             $.ajax({
                 type: 'GET',
-                url: 'http://localhost:63188/events/get/' + params,
+                url: 'http://localhost:8001/events/get/' + params,
                 contentType: 'application/json; charset=utf-8',
                 dataType: "json",
                 beforeSend: function (xhr) {

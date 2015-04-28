@@ -50,7 +50,8 @@ namespace SCSUEventHubBackend.Controllers
         // GET: Events/Create
         public ActionResult Create()
         {
-            throw new NotImplementedException();
+
+            return View();
         }
 
         // POST: Events/Create
@@ -65,7 +66,7 @@ namespace SCSUEventHubBackend.Controllers
                 repository.AddEvent(@event.AdminID.Value, @event);
                 return RedirectToAction("Index");
             }
-            ViewBag.UserId = new SelectList((new UsersRepository()).Admins, "Id", "Email", @event.AdminID);
+
             return View(@event);
         }
 

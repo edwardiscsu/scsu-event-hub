@@ -91,7 +91,7 @@
                     <div class="row event-intro">
                         <div class="event-image col-xs-3" >
                             <!--<span class="glyphicon glyphicon-picture"></span>-->
-                            <img data-bind="attr: { src: 'http://localhost:63188/content/images/' + eventDetail().ImageURL }" style="padding:5px 0px 5px 5px;width:100px;height:auto;"/>
+                            <img data-bind="attr: { src: 'http://localhost:8001/Content/images/' + eventDetail().ImageURL }" style="padding:5px 0px 5px 5px;width:100px;height:auto;"/>
                         </div>
                         <div class="event-title-time col-xs-9" style="padding-top:5px;">
                             <div style="color:#808080;" data-bind="text: eventDetail().Date"></div>
@@ -132,7 +132,7 @@
                         <div class="row event-intro">
                             <div class="event-image col-xs-3" data-bind="click: $parent.refreshEventDetail" style="cursor:pointer;">
                                 <!--<span class="glyphicon glyphicon-picture"></span>-->
-                                <img data-bind="attr: { src: 'http://localhost:63188/content/images/' + ImageURL }" style="padding:5px 0px 5px 5px;width:100px;height:auto;"/>
+                                <img data-bind="attr: { src: 'http://localhost:8001/Content/images/' + ImageURL }" style="padding:5px 0px 5px 5px;width:100px;height:auto;"/>
                             </div>
                             <div class="event-title-time col-xs-9">
                                 <div><strong style="font-size:large;" data-bind="text: EventName"></strong></div>

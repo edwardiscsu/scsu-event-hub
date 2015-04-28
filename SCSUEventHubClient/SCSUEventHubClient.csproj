@@ -230,11 +230,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\images\pic1.jpg" />
-    <Content Include="Content\images\pic2.jpg" />
-    <Content Include="Content\images\pic3.jpg" />
-    <Content Include="Content\images\pic4.jpg" />
-    <Content Include="Content\images\pic5.jpg" />
+    <Content Include="Content\images\pic1.jpeg" />
+    <Content Include="Content\images\pic2.jpeg" />
+    <Content Include="Content\images\pic3.jpeg" />
+    <Content Include="Content\images\pic4.jpeg" />
+    <Content Include="Content\images\pic5.jpeg" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
