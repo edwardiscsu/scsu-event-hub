@@ -80,5 +80,8 @@ CategoriesFilterMenu.prototype.addCategoryClickedListener = function (func) {
 }
 
 CategoriesFilterMenu.prototype.handleCategoryClicked = function (event) {
+    var categoryId = parseInt($(event.target).data("category-id"));
+    this.categorySelected = categoryId;
+    console.log(this.categorySelected);
     this.categoryClicked();
 }
