@@ -10,6 +10,7 @@ using SCSUEventHubModels.Models;
 using SCSUEventHubRepository.Entity;
 using SCSUEventHubRepository.Interfaces;
 using SCSUEventHubRepository.EventsRepositories;
+using SCSUEventHubRepository.CategoriesRepositories;
 
 namespace SCSUEventHubBackend.Controllers
 {
@@ -21,13 +22,29 @@ namespace SCSUEventHubBackend.Controllers
         // GET: Events
         public ActionResult Index()
         {
-            throw new NotImplementedException();
+            return View(repository.GetEvents());
         }
 
         // GET: Events/Details/5
         public ActionResult Details(int? id)
         {
-            throw new NotImplementedException();
+            var dEvent = new Event();
+
+            try
+            {
+                if (null != id)
+                {
+                    dEvent = repository.GetEvent(id.Value);
+                }
+                else dEvent = null;
+            }
+            catch (Exception e)
+            {
+                dEvent = null;
+                throw new HttpException(400, e.Message);
+            }
+
+            return View(dEvent);
         }
 
         // GET: Events/Create
@@ -43,13 +60,32 @@ namespace SCSUEventHubBackend.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CategoryID,AdminID,EventName,DateTime,ImageURL,Description")] Event @event)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                repository.AddEvent(@event.AdminID.Value, @event);
+                return RedirectToAction("Index");
+            }
+            ViewBag.UserId = new SelectList((new UsersRepository()).Admins, "Id", "Email", @event.AdminID);
+            return View(@event);
         }
 
         // GET: Events/Edit/5
         public ActionResult Edit(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                var dEvent = repository.GetEvent(id.Value);
+                if (dEvent == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.UserId = new SelectList((new UsersRepository()).Admins, "Id", "Email");
+                return View(dEvent);
+            }
         }
 
         // POST: Events/Edit/5
@@ -59,13 +95,31 @@ namespace SCSUEventHubBackend.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,CategoryID,AdminID,EventName,DateTime,ImageURL,Description")] Event @event)
         {
-            throw new NotImplementedException();
+            if (ModelState.IsValid)
+            {
+                repository.UpdateEvent(@event);
+                return RedirectToAction("Index");
+            }
+            ViewBag.UserId = new SelectList((new UsersRepository()).Admins, "Id", "Email", @event.AdminID);
+            return View(@event);
         }
 
         // GET: Events/Delete/5
         public ActionResult Delete(int? id)
         {
-            throw new NotImplementedException();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            else
+            {
+                var @event = repository.GetEvent(id.Value);
+                if (@event == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(@event);
+            }
         }
 
         // POST: Events/Delete/5
@@ -73,7 +127,8 @@ namespace SCSUEventHubBackend.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            throw new NotImplementedException();
+            repository.DeleteEvent(id);
+            return RedirectToAction("Index");
         }
     }
 }
