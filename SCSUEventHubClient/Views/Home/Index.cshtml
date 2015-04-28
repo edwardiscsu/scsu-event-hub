@@ -3,21 +3,25 @@
 }
 
 <style>
-.navbar-default .navbar-nav>li>a {
-    color: #eeeeee;
-}
+    .navbar-default .navbar-nav>li>a {
+        color: #eeeeee;
+    }
 
-.navbar-default .navbar-nav>li>a:hover {
-    color: #cccccc;
-}
+    .navbar-default .navbar-nav>li>a:hover {
+        color: #cccccc;
+    }
 
-.navbar-default .navbar-header>a {
-    color: #eeeeee;
-}
+    .navbar-default .navbar-header>a {
+        color: #eeeeee;
+    }
 
-.navbar-default .navbar-header>a:hover {
-    color: #cccccc;
-}
+    .navbar-default .navbar-header>a:hover {
+        color: #cccccc;
+    }
+
+    .navbar-default {
+        margin-bottom:0px;
+    }
 </style>
 
 <div align="center">
@@ -97,8 +101,8 @@
 
                 </div>
             </div>
-            @Html.Partial("_LoginPartial");
-            @Html.Partial("_RegisterPartial");
+            @Html.Partial("_LoginPartial")
+            @Html.Partial("_RegisterPartial")
         </div>
 
     </div>
